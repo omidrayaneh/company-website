@@ -1,0 +1,54 @@
+.red{
+    color: red;
+}
+.blue{
+    color: #0a53be;
+}
+.green{
+    color: green;
+}
+.brown{
+    color: brown;
+}
+.yellow{
+    color: yellow;
+
+}
+.tomato{
+    color: tomato;
+}
+.orangered{
+    color: orangered;
+}
+.darkred{
+    color: darkred;
+}
+.black{
+    color: black;
+}
+.limegreen{
+     color: limegreen;
+ }
+
+.yellowgreen{
+    color:yellowgreen;
+}
+.indigo{
+    color:indigo;
+}
+.navy{
+    color:navy;
+}
+
+.swal-footer {
+    text-align: center;
+    direction: ltr
+;
+}
+button ,.swal-button ,.swal-button--confirm{
+    background-color: #4a39ec;
+}
+button ,swal-button ,.swal-button--cancel{
+    background-color: #f30000;
+    color: white;
+}
