@@ -38,10 +38,8 @@
                         </thead>
                         <tbody>
                         @foreach($users as $key =>$user )
-                            {{--                            ($users->currentPage()--}}
-                            {{--                                @dd($loop->iteration+2)--}}
+
                             <tr class="text-center">
-{{--                                @dd(($users->currentPage()*$loop->iteration)+$loop->iteration)--}}
                                 <td>{{($num ++)}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>

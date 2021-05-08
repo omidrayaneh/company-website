@@ -52,3 +52,9 @@ button ,swal-button ,.swal-button--cancel{
     background-color: #f30000;
     color: white;
 }
+
+.dropzone .dz-preview .dz-image img{
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}

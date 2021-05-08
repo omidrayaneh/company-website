@@ -1,7 +1,8 @@
 @extends('admin.layouts.master')
-@section('styles')
-    <script src="/admin/vendor/ckeditor/ckeditor.js"></script>
-@endsection
+@push('css')
+
+    <script src="https://cdn.tiny.cloud/1/d2fbqjugzvz3kei69gnni08zsvsjdv7k3773u2qcvzecfv37/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+@endpush
 @section('title')
     <title>{{__('App Name')}}</title>
 @endsection
@@ -30,9 +31,7 @@
 
                     </div>
                 </div>
-                <div>
-                     <textarea name="editor" id="editor" rows="10" cols="80"></textarea>
-                </div>
+
                 <div class="col-xl-3 col-md-6">
                     <!-- START card-->
                     <div class="card flex-row align-items-center align-items-stretch border-0">
@@ -61,6 +60,11 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                     <textarea>
+                        Welcome to TinyMCE!
+                      </textarea>
+                </div>
                 <div class="col-xl-3 col-lg-6 col-md-12">
                     <!-- START date widget-->
                     <div class="card flex-row align-items-center align-items-stretch border-0">
@@ -88,15 +92,20 @@
     </section>
 @endsection
 @push('js')
-    <script src="{{asset('admin/js/ckeditor/ckeditor.js')}}" ></script>
-    <script>
-        CKEDITOR.replace('editor',{
-            customConfig: 'config.js',
-            toolbar: 'simple',
-            language: 'fa',
-            removePlugins: 'cloudservices, easyimage'
-        });
 
+        <script>
+            tinymce.init({
+            selector: 'textarea',
+            plugins: 'image imagetools a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
+            menubar: 'insert',
+            toolbar: 'image a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
+
+            toolbar_mode: 'floating',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            imagetools_cors_hosts: ['yasnasoft.test'],
+            imagetools_proxy: 'proxy.php'
+        });
 
     </script>
 @endpush

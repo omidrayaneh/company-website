@@ -15,6 +15,15 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
+            $table->string('path');
+            $table->string('original_name');
+            $table->boolean('type')->default(0);//1 = main page image
+            $table->boolean('status')->default(0);//1 = enable show image
+            $table->string('detail')->nullable();//main page image value
+            $table->string('place')->nullable();//main page image place
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

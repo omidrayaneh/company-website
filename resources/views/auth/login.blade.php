@@ -50,7 +50,7 @@
                             @csrf
                             <div class="form-group">
                                 <label>{{__('Email')}} </label>
-                                <input  required autocomplete="email" autofocus type="email" name="email" {{old('email')}} class="form-control  @error('email') is-invalid @enderror" placeholder="{{__('Email')}} ">
+                                <input  required autocomplete="email" value="omidrayaneh@gmail.com" autofocus type="email" name="email" {{old('email')}} class="form-control  @error('email') is-invalid @enderror" placeholder="{{__('Email')}} ">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">-
                                            <strong>{{ $message }}</strong>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="form-group">
                                 <label>{{__('Password')}}</label>
-                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="{{__('Password')}}" >
+                                <input type="password" value="12121212" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="{{__('Password')}}" >
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

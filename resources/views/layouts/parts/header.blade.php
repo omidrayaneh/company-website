@@ -1,4 +1,3 @@
-
 <div class="navbar-area">
     <div class="main-responsive-nav">
         <div class="container">
@@ -58,12 +57,6 @@
                             <div class="option-item">
                                 <a href="{{route('login')}}" class="default-btn">{{__('Login')}}<i class="ri-login-box-line"></i><span></span></a>
                             </div>
-{{--                            @if(Route::has('register'))--}}
-{{--                                <div class="option-item">--}}
-{{--                                    <a href="{{route('register')}}" class="default-btn">{{__('Register')}}<i class="ri-registered-line"></i><span></span></a>--}}
-{{--                                </div>--}}
-
-{{--                            @endif--}}
                         @else
                             <div class="option-item">
                                 <a href="{{ route('logout') }}"

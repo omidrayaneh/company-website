@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,9 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('photos','Admin\PhotoController@index')->name('photos.index');
         Route::get('photos/create','Admin\PhotoController@store')->name('photos.create');
         Route::resource('users','Admin\UserController');
+        Route::resource('menus','Admin\MenuController');
+        Route::delete('galleries/delete/{name}', 'Admin\GalleryController@delete')->name('galleries.delete');
+        Route::resource('galleries','Admin\GalleryController');
     });
 });
 
@@ -41,8 +45,7 @@ Route::group(['middleware' => ['admin']], function () {
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/{locate?}', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
