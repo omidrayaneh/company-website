@@ -10,7 +10,7 @@ interface MenuRepositoryInterface
 
     public function allWithPaginate($page);
 
-    public function allWithRelation();
+    public function allWithOutPagination();
 
     public function create($request);
 

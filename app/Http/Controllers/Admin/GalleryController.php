@@ -22,11 +22,15 @@ class GalleryController extends Controller
     }
 
 
-    public function index(Request $request)
+    public function index()
     {
-        $num = num_row($request->input('page'),$limit = 10);
-        $photos = $this->gallery->allWithPaginate($limit);
-        return view('admin.galleries.index', compact(['photos','num']));
+        $photos = $this->gallery->allWithPaginate(10);
+        return view('admin.galleries.index', compact(['photos']));
+    }
+    public function post_index()
+    {
+        $photos = $this->gallery->allPostWithPaginate(10);
+        return view('admin.galleries.index', compact(['photos']));
     }
 
 

@@ -1,6 +1,6 @@
 @foreach($menus as $sub_menu)
     <tr class="text-center" >
-        <td></td>
+        <td>#</td>
         <td class="text-left">{{str_repeat(' - ', $level)}}{{$sub_menu->title}}</td>
         <td>
             @if($sub_menu->status)

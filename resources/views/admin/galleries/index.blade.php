@@ -41,7 +41,7 @@
                         @foreach($photos as $key =>$photo )
 
                             <tr class="text-center">
-                                <td>{{($num ++)}}</td>
+                                <td>{{$photos->currentPage() == 1 ? $key+1: (($photos->perPage()*($photos->currentPage()-1)))+$key+1}}</td>
                                 <td class="" >
                                     <img width="50" height="50" id="image" onclick="CopyToClipboard({{$photo->id}})" src="{{'/storage/photos/'.$photo->path }}" class="img-fluid rounded">
                                     <input type="text" id="imageSrc_{{$photo->id}}"  hidden value="{{'/storage/photos/'.$photo->path }}">
@@ -51,7 +51,7 @@
                                     @if($photo->type == 1)
                                         <span class="badge badge-purple float-center">عکس وب سایت</span>
                                     @else
-                                        <span class="badge badge-purple float-center">عکس مطالب</span>
+                                        <span class="badge badge-danger float-center">عکس مطالب</span>
                                     @endif
                                 </td>
                                 <td>

@@ -38,7 +38,7 @@
                         <tbody>
                         @foreach($menus as $key =>$menu )
                             <tr class="text-center">
-                                <td></td>
+                                <td>{{$menus->currentPage() == 1 ? $key+1: (($menus->perPage()*($menus->currentPage()-1)))+$key+1}}</td>
                                 <td class="text-left">{{$menu->title}}</td>
                                 <td>
                                 @if($menu->status )

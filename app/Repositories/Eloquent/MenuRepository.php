@@ -26,13 +26,13 @@ class MenuRepository implements MenuRepositoryInterface
 
     public function allWithPaginate($number)
     {
-        return $categories = Menu::with(['childrenRecursive'])
+        return Menu::with(['childrenRecursive'])
             ->where('parent_id', null)
             ->paginate($number);
     }
-    public function allWithRelation()
+    public function allWithOutPagination()
     {
-        return $categories = Menu::with(['childrenRecursive'])
+        return  Menu::with(['childrenRecursive'])
             ->where('parent_id', null)
             ->get();
     }
@@ -64,6 +64,7 @@ class MenuRepository implements MenuRepositoryInterface
         $inputs = $request->only(['title', 'parent_id', 'status']);
 
         $Menu = $this->findBySlug($slug);
+
         $Menu->title = $inputs['title'];
         $Menu->parent_id = $inputs['parent_id'];
         $Menu->user_id = auth()->id();

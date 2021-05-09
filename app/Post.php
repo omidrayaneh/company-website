@@ -13,6 +13,7 @@ class Post extends Model
     {
         return 'slug';
     }
+
     public static function makeSlug($string)
     {
         return preg_replace('/\s+/u', '-', trim($string));
@@ -31,6 +32,6 @@ class Post extends Model
     }
     public function menu()
     {
-        return $this->hasMany(Menu::class);
+        return $this->belongsTo(Menu::class);
     }
 }

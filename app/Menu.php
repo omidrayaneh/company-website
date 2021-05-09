@@ -27,9 +27,9 @@ class Menu extends Model
         return (string)$number;
     }
 
-    public function posts()
+    public function post()
     {
-        $this->belongsTo(Post::class);
+        $this->hasMany(Post::class);
     }
     public static function checkSKU($number)
     {

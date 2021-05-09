@@ -38,9 +38,9 @@
                         </thead>
                         <tbody>
                         @foreach($users as $key =>$user )
-
                             <tr class="text-center">
-                                <td>{{($num ++)}}</td>
+                                <td>{{$users->currentPage() == 1 ? $key+1: (($users->perPage()*($users->currentPage()-1)))+$key+1}}</td>
+
                                 <td>{{$user->email}}</td>
                                 <td>
                                     @if($user->role == __('user'))

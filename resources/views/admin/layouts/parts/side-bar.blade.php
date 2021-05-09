@@ -26,25 +26,100 @@
                 <!-- END user info-->
                 <!-- Iterates over all sidebar items-->
                 <li class="nav-heading ">
-                    <span data-localize="sidebar.heading.HEADER">منوی اصلی</span>
+                    <span data-localize="sidebar.heading.HEADER">{{__('Main Menu')}}</span>
                 </li>
                 <li class="{{Route::is('admin.dashboard')? 'active':'' }}">
                     <a href="{{route('admin.dashboard')}}" title="{{__('Dashboard')}}">
                         <span>{{__('Dashboard')}}</span>
                     </a>
                 </li>
-
+                <li class="{{Route::is('galleries.index')? 'active':'' }}">
+                    <a href="#galleries" title="Layouts" data-toggle="collapse">
+                        <em class="fa fa-images brown"></em>
+                        <span>{{__('Galleries')}}</span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('galleries.index')? 'show ':'' }}" id="galleries">
+                        <li class="sidebar-subnav-header">{{__('Galleries')}}</li>
+                        <li class=" {{Route::is('galleries.index')? 'active ':'' }}">
+                            <a href="{{route('galleries.index')}}" title="Horizontal">
+                                <em class="fa fa-list-alt limegreen"></em>
+                                <span>{{__('Galleries List Website')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('posts.galleries.index')? 'active ':'' }}">
+                            <a href="{{route('posts.galleries.index')}}" title="Horizontal">
+                                <em class="fa fa-list-alt limegreen"></em>
+                                <span>{{__('Galleries List Posts')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('galleries.create')? 'active ':'' }}">
+                            <a href="{{route('galleries.create')}}" title="Horizontal">
+                                <em class="fa fa-plus limegreen"></em>
+                                <span>{{__('New Gallery')}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="{{Route::is('users.index')? 'active':'' }}">
-                    <a href="#layout" title="Layouts" data-toggle="collapse">
+                    <a href="#users" title="Layouts" data-toggle="collapse">
                         <em class="fa fa-users blue"></em>
                         <span>{{__('Users')}}</span>
                     </a>
-                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('users.index')? 'show ':'' }}" id="layout">
+                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('users.index')? 'show ':'' }}" id="users">
                         <li class="sidebar-subnav-header">{{__('Users')}}</li>
                         <li class=" {{Route::is('users.index')? 'active ':'' }}">
                             <a href="{{route('users.index')}}" title="Horizontal">
-                                <em class="fa fa-list blue"></em>
+                                <em class="fa fa-list-alt limegreen"></em>
                                 <span>{{__('Users List')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('users.create')? 'active ':'' }}">
+                            <a href="{{route('users.create')}}" title="Horizontal">
+                                <em class="fa fa-plus limegreen"></em>
+                                <span>{{__('New User')}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{{Route::is('menus.index')? 'active':'' }}">
+                    <a href="#menus" title="Layouts" data-toggle="collapse">
+                        <em class="fa fa-bars tomato"></em>
+                        <span>{{__('Menus')}}</span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('menus.index')? 'show ':'' }}" id="menus">
+                        <li class="sidebar-subnav-header">{{__('Menus')}}</li>
+                        <li class=" {{Route::is('menus.index')? 'active ':'' }}">
+                            <a href="{{route('menus.index')}}" title="Horizontal">
+                                <em class="fa fa-list-alt limegreen"></em>
+                                <span>{{__('Menus List')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('menus.create')? 'active ':'' }}">
+                            <a href="{{route('menus.create')}}" title="Horizontal">
+                                <em class="fa fa-plus limegreen"></em>
+                                <span>{{__('New Menu')}}</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="{{Route::is('posts.index')? 'active':'' }}">
+                    <a href="#posts" title="Layouts" data-toggle="collapse">
+                        <em class="fa fa-edit indigo"></em>
+                        <span>{{__('Posts')}}</span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('posts.index')? 'show ':'' }}" id="posts">
+                        <li class="sidebar-subnav-header">{{__('Posts')}}</li>
+                        <li class=" {{Route::is('posts.index')? 'active ':'' }}">
+                            <a href="{{route('posts.index')}}" title="Horizontal">
+                                <em class="fa fa-list-alt limegreen"></em>
+                                <span>{{__('Posts List')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('posts.create')? 'active ':'' }}">
+                            <a href="{{route('posts.create')}}" title="Horizontal">
+                                <em class="fa fa-plus limegreen"></em>
+                                <span>{{__('New Post')}}</span>
                             </a>
                         </li>
                     </ul>

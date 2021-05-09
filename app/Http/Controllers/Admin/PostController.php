@@ -3,39 +3,62 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EditPostRequest;
+use App\Http\Requests\PostRequest;
+use App\Repositories\Eloquent\MenuRepository;
+use App\Repositories\Eloquent\PostRepository;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+
+    /**
+     * @var PostRepository
+     */
+    private $post;
+    /**
+     * @var MenuRepository
+     */
+    private $menu;
+
+    public function __construct(PostRepository $post,MenuRepository $menu)
+    {
+        $this->post = $post;
+        $this->menu = $menu;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return /all posts
      */
     public function index()
     {
-        //
+        $posts = $this->post->allWithPaginate(10);
+        return view('admin.posts.index',compact(['posts']));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return /create new post
      */
     public function create()
     {
-        //
+       $menus= $this->menu->allWithOutPagination();
+        return view('admin.posts.create',compact(['menus']));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return / post index page
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+       $this->post->create($request);
+        return redirect('admin/posts');
     }
 
     /**
@@ -53,11 +76,14 @@ class PostController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $slug
-     * @return \Illuminate\Http\Response
+     * @return /edit post
      */
     public function edit($slug)
     {
-        //
+        $menus= $this->menu->allWithOutPagination();
+         $post = $this->post->findBySlugWithRelation($slug);
+        return view('admin.posts.edit',compact(['post','menus']));
+
     }
 
     /**
@@ -65,11 +91,12 @@ class PostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $slug
-     * @return \Illuminate\Http\Response
+     * @return /redirect index page
      */
-    public function update(Request $request, $slug)
+    public function update(EditPostRequest $request, $slug)
     {
-        //
+        $this->post->update($request,$slug);
+        return redirect('admin/posts');
     }
 
     /**
@@ -80,6 +107,7 @@ class PostController extends Controller
      */
     public function destroy($slug)
     {
-        //
+        $post = $this->post->findBySlug($slug);
+        $post->delete();
     }
 }

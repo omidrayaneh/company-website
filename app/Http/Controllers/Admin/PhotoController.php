@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Photo;
 use Illuminate\Contracts\Foundation\Application as ApplicationAlias;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -37,7 +40,32 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if ($request->hasFile('upload')){
+            $original_name = $request->file('upload')->getClientOriginalName();
+            $filename = pathinfo($original_name,PATHINFO_FILENAME);
+            $extention = $request->file('upload')->getClientOriginalExtension();
+            $filename = $filename.'_'.time().'.'.$extention;
+
+            $request->file('upload')->move(public_path('storage/photos'),$filename);
+
+            $CKeditor = $request->input('CKEditorFuncNum');
+            $url = asset('/storage/photos/'.$filename);
+            $msg = 'Image Upload Successfully';
+
+
+            $photo = new Photo();
+            $photo->original_name = $original_name;
+            $photo->path = $filename;
+            $photo->type = 0;
+            $photo->user_id = auth()->id();
+            $photo->save();
+
+            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKeditor ,`$url` , `$msg`)</script>";
+           @header('Content-type: text/html;charset=utf-8');
+           echo $response;
+        }
+
     }
 
     /**

@@ -10,6 +10,8 @@ interface GalleryRepositoryInterface
 
     public function allWithPaginate($page);
 
+    public function allPostWithPaginate($page);
+
     public function create($request);
 
     public function delete($file_name);

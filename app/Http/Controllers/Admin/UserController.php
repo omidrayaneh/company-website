@@ -21,10 +21,9 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $num = num_row($request->input('page'),$limit = 10);
-        $users = $this->user->allWithPaginate($limit);
+        $users = $this->user->allWithPaginate(10);
        // return $date = Jalalian::forge('today')->format('%A  ');
-        return view('admin.users.index',compact('users','num'));
+        return view('admin.users.index',compact('users'));
     }
 
 

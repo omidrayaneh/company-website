@@ -40,7 +40,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $menus = $this->menu->allWithRelation();
+        $menus = $this->menu->allWithOutPagination();
         return view('admin.menus.create',compact(['menus']));
     }
 
@@ -76,7 +76,7 @@ class MenuController extends Controller
     public function edit($slug)
     {
         $menu = $this->menu->findBySlug($slug);
-        $menus = $this->menu->allWithRelation();
+        $menus = $this->menu->allWithOutPagination();
         return view('admin.menus.edit',compact(['menus','menu']));
 
     }

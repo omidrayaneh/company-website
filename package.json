@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "alertifyjs": "^1.13.1",
+        "ckeditor4": "^4.16.0",
         "sweetalert": "^2.1.2",
         "sweetalert2": "^10.16.6"
     }

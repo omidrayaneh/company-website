@@ -30,7 +30,11 @@ class GalleryRepository implements GalleryRepositoryInterface
 
     public function allWithPaginate($page)
     {
-        return Photo::paginate($page);
+        return Photo::where('type',1)->paginate($page);
+    }
+    public function allPostWithPaginate($page)
+    {
+        return Photo::where('type',0)->paginate($page);
     }
 
     public function create($request)

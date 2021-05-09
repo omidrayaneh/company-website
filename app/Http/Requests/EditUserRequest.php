@@ -27,7 +27,7 @@ class EditUserRequest extends FormRequest
     {
         return [
             'name'=>'required',
-            'email'=>'required|email|unique:users,email,' . $this->user()->id,
+            'email'=>'required|email|unique:users,email,' . $this->user,
             'role'=>'required',
            // 'password' => 'required|confirmed|min:8',
            // 'password_confirmation' => 'same:password'

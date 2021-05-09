@@ -60,11 +60,6 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                     <textarea>
-                        Welcome to TinyMCE!
-                      </textarea>
-                </div>
                 <div class="col-xl-3 col-lg-6 col-md-12">
                     <!-- START date widget-->
                     <div class="card flex-row align-items-center align-items-stretch border-0">
@@ -92,20 +87,4 @@
     </section>
 @endsection
 @push('js')
-
-        <script>
-            tinymce.init({
-            selector: 'textarea',
-            plugins: 'image imagetools a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker',
-            menubar: 'insert',
-            toolbar: 'image a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
-
-            toolbar_mode: 'floating',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-            imagetools_cors_hosts: ['yasnasoft.test'],
-            imagetools_proxy: 'proxy.php'
-        });
-
-    </script>
 @endpush

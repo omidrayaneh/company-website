@@ -18,7 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();;
             $table->string('sku')->unique();
-            $table->string('description');
+            $table->longText('description');
             $table->boolean('status');
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();
