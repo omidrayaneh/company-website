@@ -43,7 +43,7 @@
                             <small class="text-danger">@error('status') {{$message}}@enderror</small>
                         </div>
 
-                        <button class="btn btn-info " type="submit">ارسال</button>
+                        <button class="btn btn-info " type="submit">{{__('Save')}}</button>
                     </form>
                 </div>
             </div>

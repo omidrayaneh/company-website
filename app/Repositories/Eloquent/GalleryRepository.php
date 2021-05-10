@@ -71,8 +71,12 @@ class GalleryRepository implements GalleryRepositoryInterface
             $photo->status = 1;
         else
             $photo->status = 0;
+        if ($request->input('type') == 'on')
+            $photo->type = 1;
+        else
+            $photo->type = 0;
         $photo->save();
-        toast('تصویر با موفقیت ویرایش  شد', 'success');
+        toast('تصویر ویرایش  شد', 'success');
     }
 
     public function findById($id)

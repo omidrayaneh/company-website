@@ -62,7 +62,7 @@
                                     @endif
                                 </td>
                                 <td>{{$photo->place}}</td>
-                                <td>{{$photo->detile}}</td>
+                                <td>{!! $photo->detail !!}</td>
                                 <td>
                                     <a href="{{route('galleries.edit',$photo->id)}}" data-toggle="tooltip"
                                        data-title="{{__('Edit')}}">

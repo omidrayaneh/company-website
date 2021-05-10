@@ -52,7 +52,8 @@ class GalleryController extends Controller
 
     public function show($id)
     {
-        //
+        $photo = $this->gallery->findById($id);
+        return response(['photo'=> $photo],200);
     }
 
 
@@ -65,15 +66,10 @@ class GalleryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $validator = $this->gallery->validator($request,$id);
-
-        if ($validator->fails()) {
-            return redirect('admin/galleries/'.$id.'/edit')
-                ->withErrors($validator)->withInput();
-        }
-
         $this->gallery->update($id,$request);
-        return redirect('admin/galleries');
+        if ($request->input('type'))
+            return redirect('admin/galleries');
+        return redirect('admin/post-galleries');
     }
 
 

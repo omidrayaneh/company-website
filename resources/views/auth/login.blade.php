@@ -9,7 +9,7 @@
     <meta name="author" content="">
 @endsection
 @section('title')
-    <title>سیناسافت</title>
+    <title>{{__('App Name')}}</title>
 @endsection
 
 @section('content')

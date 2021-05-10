@@ -26,6 +26,8 @@ class EditPostRequest extends FormRequest
         return [
             'title'=>'required',
             'description'=>'required',
+            'photo_id'=>'required',
+            'parent_id'=>'required',
         ];
     }
 }

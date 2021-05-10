@@ -164,5 +164,7 @@ return [
         'title'                 => 'عنوان',
         'username'              => 'نام کاربری',
         'year'                  => 'سال',
+        'photo_id'              => 'تصویر',
+        'parent_id'              => 'منو',
     ],
 ];

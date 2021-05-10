@@ -20,11 +20,15 @@ class CreatePostsTable extends Migration
             $table->string('sku')->unique();
             $table->longText('description');
             $table->boolean('status');
+
             $table->text('meta_description')->nullable();
             $table->text('meta_keywords')->nullable();
 
             $table->unsignedBigInteger('menu_id');
             $table->foreign('menu_id')->references('id')->on('menus');
+
+            $table->unsignedBigInteger('photo_id');
+            $table->foreign('photo_id')->references('id')->on('photos');
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

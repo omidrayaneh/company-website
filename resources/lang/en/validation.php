@@ -146,6 +146,10 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'photo_id'              => 'photo',
+        'parent_id'              => 'parent',
+
+    ],
 
 ];
