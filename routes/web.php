@@ -38,6 +38,7 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('posts','Admin\PostController');
         Route::delete('galleries/delete/{name}', 'Admin\GalleryController@delete')->name('galleries.delete');
         Route::resource('galleries','Admin\GalleryController');
+        Route::resource('metas','Admin\MetaController');
         Route::get('post-galleries','Admin\GalleryController@post_index')->name('posts.galleries.index');
     });
 });

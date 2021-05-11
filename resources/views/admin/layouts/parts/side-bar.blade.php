@@ -81,6 +81,27 @@
                         </li>
                     </ul>
                 </li>
+                <li class="{{Route::is('metas.index')? 'active':'' }}">
+                    <a href="#metas" title="Layouts" data-toggle="collapse">
+                        <em class="fa fa-memory yellow"></em>
+                        <span>{{__('Metas')}}</span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('metas.index')? 'show ':'' }}" id="metas">
+                        <li class="sidebar-subnav-header">{{__('Metas List')}}</li>
+                        <li class=" {{Route::is('metas.index')? 'active ':'' }}">
+                            <a href="{{route('metas.index')}}" title="Horizontal">
+                                <em class="fa fa-list-alt yellow"></em>
+                                <span>{{__('Metas List')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('metas.create')? 'active ':'' }}">
+                            <a href="{{route('metas.create')}}" title="Horizontal">
+                                <em class="fa fa-plus yellow"></em>
+                                <span>{{__('New Meta')}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="{{Route::is('menus.index')? 'active':'' }}">
                     <a href="#menus" title="Layouts" data-toggle="collapse">
                         <em class="fa fa-bars tomato"></em>
