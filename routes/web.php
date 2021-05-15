@@ -32,10 +32,13 @@ Route::group(['middleware' => ['admin']], function () {
     Route::prefix('admin/')->group(function (){
         Route::get('dashboard','Admin\AdminController@index')->name('admin.dashboard');
         Route::get('photos','Admin\PhotoController@index')->name('photos.index');
+        Route::post('photos/update/{id}','Admin\PhotoController@update')->name('photos.update');
         Route::post('photos/create','Admin\PhotoController@store')->name('photos.store');
+        Route::post('photos/destroy/{id}','Admin\PhotoController@destroy')->name('photos.destroy');
         Route::resource('users','Admin\UserController');
         Route::resource('menus','Admin\MenuController');
         Route::resource('posts','Admin\PostController');
+        Route::resource('companies','Admin\CompanyController');
         Route::delete('galleries/delete/{name}', 'Admin\GalleryController@delete')->name('galleries.delete');
         Route::resource('galleries','Admin\GalleryController');
         Route::resource('metas','Admin\MetaController');

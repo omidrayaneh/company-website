@@ -26,8 +26,16 @@ class GalleryRepository implements GalleryRepositoryInterface
 
     public function all()
     {
+        return Photo::all();
     }
-
+    public function getBanner($place)
+    {
+        return Photo::where([['type',1],['place',$place],['status',1]])->first();
+    }
+    public function getAllBanner($place)
+    {
+        return Photo::where([['type',1],['place',$place],['status',1]])->get();
+    }
     public function allWithPaginate($page)
     {
         return Photo::where('type',1)->paginate($page);
@@ -67,6 +75,7 @@ class GalleryRepository implements GalleryRepositoryInterface
         $photo = $this->findById($id);
         $photo->place = $request->place;
         $photo->detail = $request->detail;
+        $photo->title = $request->title;
         if ($request->input('status') == 'on')
             $photo->status = 1;
         else
@@ -88,15 +97,5 @@ class GalleryRepository implements GalleryRepositoryInterface
         return Photo::where('original_name',$file_name)->first();
     }
 
-    public function validator($request, $id)
-    {
-        $gallery= $this->findById($id);
-        return $validator = Validator::make($request->all(), [
-            'detail' => 'required',
-            'place' => 'required',
-        ], [
-            'detail.required' => 'عنوان عکس  خالیست',
-            'place.required' => 'مکان عکس  خالیست',
-        ]);
-    }
+
 }

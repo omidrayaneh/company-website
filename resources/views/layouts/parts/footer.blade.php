@@ -109,25 +109,9 @@
     <div class="copyright-area">
         <div class="container">
             <div class="copyright-area-content">
-                <p>
-                    کپی رایت © 1399. حقوق قالب محفوظ است. طراحی و توسعه توسط <a href="https://www.rtl-theme.com/author/barat/?aff=barat" target="_blank" rel="nofollow">Barat Hadian</a></p>
+                <p>تمام حقوق مادی و معنوی این وب سایت محفوظ و متعلق به شرکت پردازش ارقام یسنا می باشد</p>
             </div>
         </div>
-    </div>
-    <div class="footer-shape-1" data-speed="0.08" data-revert="true">
-        <img src="assets/images/footer/shape-1.png" alt="image">
-    </div>
-    <div class="footer-shape-2" data-speed="0.08" data-revert="true">
-        <img src="assets/images/footer/shape-2.png" alt="image">
-    </div>
-    <div class="footer-shape-3" data-speed="0.08" data-revert="true">
-        <img src="assets/images/footer/shape-3.png" alt="image">
-    </div>
-    <div class="footer-shape-4" data-speed="0.08" data-revert="true">
-        <img src="assets/images/footer/shape-4.png" alt="image">
-    </div>
-    <div class="footer-shape-5" data-speed="0.08" data-revert="true">
-        <img src="assets/images/footer/shape-5.png" alt="image">
     </div>
 </footer>
 

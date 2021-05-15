@@ -19,9 +19,10 @@ class CreatePhotosTable extends Migration
             $table->string('original_name');
             $table->boolean('type')->default(0);//1 = main page image
             $table->boolean('status')->default(0);//1 = enable show image
-            $table->string('detail')->nullable();//main page image value
+            $table->boolean('main_page')->default(0);//1 = enable show image in main page
+            $table->longText('detail')->nullable();//main page image detail
+            $table->string('title')->nullable();//main page image title
             $table->string('place')->nullable();//main page image place
-
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

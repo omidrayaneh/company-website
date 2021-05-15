@@ -99,7 +99,19 @@ class PhotoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $uploadedFile = $request->file('file');
+        $filename = time().$uploadedFile->getClientOriginalName();
+        $original_name = $uploadedFile->getClientOriginalName();
+
+        Storage::disk('local')->putFileAs(
+            'public/photos', $uploadedFile, $filename
+        );
+
+        $photo =Photo::findOrFail($id);
+        $photo->original_name = $original_name;
+        $photo->path = $filename;
+        $photo->save();
+
     }
 
     /**
@@ -110,6 +122,9 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $photo = Photo::findOrFail($id);
+        $image_path = public_path().$photo->path;
+        unlink($image_path);
+        return response(['success'=>'حذف شد',200]);
     }
 }

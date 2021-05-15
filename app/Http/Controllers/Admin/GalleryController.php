@@ -76,7 +76,7 @@ class GalleryController extends Controller
     public function destroy($id)//for all photo index page
     {
         $photo = $this->gallery->findById($id);
-        $image_path = public_path().'\\storage\photos'.'\\'.$photo->path;
+        $image_path = public_path().$photo->path;
         unlink($image_path);
         $photo->delete($image_path);
         return response(['success'=>'حذف شد',200]);
@@ -84,7 +84,7 @@ class GalleryController extends Controller
     public function delete($name)//for dropzone in create or edit page
     {
         $photo = $this->gallery->findByFileName($name);
-        $image_path = public_path().'\\storage\photos'.'\\'.$photo->path;
+        $image_path = public_path().$photo->path;
         unlink($image_path);
         $photo->delete($image_path);
         return response(['success'=>'حذف شد',200]);

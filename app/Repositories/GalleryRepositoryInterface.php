@@ -12,6 +12,10 @@ interface GalleryRepositoryInterface
 
     public function allPostWithPaginate($page);
 
+    public function getBanner($place);
+
+    public function getAllBanner($place);
+
     public function create($request);
 
     public function delete($file_name);
@@ -22,5 +26,4 @@ interface GalleryRepositoryInterface
 
     public function findByFileName($file_name);
 
-    public function validator($request,$id);
 }

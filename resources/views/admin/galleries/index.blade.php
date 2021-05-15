@@ -31,9 +31,8 @@
                             <th>{{__('Row')}}</th>
                             <th>{{__('Photo')}}</th>
                             <th>{{__('Type')}}</th>
-                            <th>{{__('Status')}}</th>
                             <th>{{__('Place')}}</th>
-                            <th>{{__('Detail')}}</th>
+                            <th>{{__('Status')}}</th>
                             <th>{{__('Action')}}</th>
                         </tr>
                         </thead>
@@ -43,26 +42,45 @@
                             <tr class="text-center">
                                 <td>{{$photos->currentPage() == 1 ? $key+1: (($photos->perPage()*($photos->currentPage()-1)))+$key+1}}</td>
                                 <td class="" >
-                                    <img width="50" height="50" id="image" onclick="CopyToClipboard({{$photo->id}})" src="{{'/storage/photos/'.$photo->path }}" class="img-fluid rounded">
-                                    <input type="text" id="imageSrc_{{$photo->id}}"  hidden value="{{'/storage/photos/'.$photo->path }}">
+                                    <img width="50" height="50" id="image" onclick="CopyToClipboard({{$photo->id}})" src="{{$photo->path }}" class="img-fluid rounded">
+                                    <input type="text" id="imageSrc_{{$photo->id}}"  hidden value="{{$photo->path }}">
 
                                 </td>
                                 <td>
                                     @if($photo->type == 1)
-                                        <span class="badge badge-purple float-center">عکس وب سایت</span>
+                                        <span class="badge badge-purple float-center">{{__('Web Photo')}}</span>
                                     @else
-                                        <span class="badge badge-danger float-center">عکس مطالب</span>
+                                        <span class="badge badge-danger float-center">{{__('Article Photo')}}</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($photo->place == __('mainBanner'))
+                                        <span class="badge badge-info float-center"> {{__('mainBanner')}}</span>
+                                    @elseif($photo->place == __('logo'))
+                                        <span class="badge badge-info float-center"> {{__('logo')}}</span>
+                                    @elseif($photo->place ==__('favIcon'))
+                                        <span class="badge badge-info float-center"> {{__('favIcon')}}</span>
+                                    @elseif($photo->place ==__('customers'))
+                                        <span class="badge badge-info float-center"> {{__('customers')}}</span>
+                                    @elseif($photo->place ==__('teamMembers'))
+                                        <span class="badge badge-info float-center"> {{__('teamMembers')}}</span>
+                                    @elseif($photo->place ==__('experienceBanner'))
+                                        <span class="badge badge-info float-center"> {{__('experienceBanner')}}</span>
+                                    @elseif($photo->place ==__('mainBackground'))
+                                        <span class="badge badge-info float-center"> {{__('mainBackground')}}</span>
+                                    @elseif($photo->place ==__('serviceBanner'))
+                                        <span class="badge badge-info float-center"> {{__('serviceBanner')}}</span>
+                                    @elseif($photo->place ==__('employeeBanner'))
+                                        <span class="badge badge-info float-center"> {{__('employeeBanner')}}</span>
                                     @endif
                                 </td>
                                 <td>
                                     @if($photo->status)
-                                        <span class="badge badge-success float-center">تایید شده</span>
+                                        <span class="badge badge-success float-center">{{__('Enable')}}</span>
                                     @else
-                                        <span class="badge badge-danger float-center">تایید نشده</span>
+                                        <span class="badge badge-danger float-center">{{__('Disable')}}</span>
                                     @endif
                                 </td>
-                                <td>{{$photo->place}}</td>
-                                <td>{!! $photo->detail !!}</td>
                                 <td>
                                     <a href="{{route('galleries.edit',$photo->id)}}" data-toggle="tooltip"
                                        data-title="{{__('Edit')}}">

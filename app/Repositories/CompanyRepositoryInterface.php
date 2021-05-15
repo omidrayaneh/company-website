@@ -2,13 +2,11 @@
 
 namespace App\Repositories;
 
-interface MetaRepositoryInterface
+interface CompanyRepositoryInterface
 {
     public function all();
 
     public function findById($id);
-
-    public function getFirstActiveMeta();
 
     public function allWithPaginate($number);
 

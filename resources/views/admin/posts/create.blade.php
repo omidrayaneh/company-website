@@ -114,7 +114,7 @@
             },
             acceptedFiles: ".jpg ,.png",
             maxFiles: 1,
-            maxFilesize: 0.3,
+            maxFilesize: 0.8,
             paramName: "file",
             acceptedMimeTypes: null,
             acceptParameter: null,

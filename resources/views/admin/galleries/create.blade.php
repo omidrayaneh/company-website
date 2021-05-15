@@ -65,8 +65,8 @@
             return (_ref = file.previewElement) != null ? _ref.parentNode.removeChild(file.previewElement) : void 0;
         } ,
         acceptedFiles: ".jpg ,.png",
-        maxFiles: 5,
-        maxFilesize: 0.3,
+        maxFiles: 10,
+        maxFilesize: 1.5,
         paramName: "file",
         acceptedMimeTypes: null,
         acceptParameter: null,
@@ -94,7 +94,7 @@
             console.log(file)
               var mockFile = { name: val.original_name, size: 12345 };
               drop.emit('addedfile',mockFile);
-              drop.emit('thumbnail',mockFile,'/storage/photos/'+val.path);
+              drop.emit('thumbnail',mockFile,val.path);
               drop.emit('complete',mockFile);
           });
 

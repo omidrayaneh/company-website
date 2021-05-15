@@ -2417,7 +2417,7 @@ left: -20px;
 	z-index: 1
 }
 .support-area {
-	background-image: url(../../assets/images/support/support-bg-1.jpg);
+	/*background-image: url(../../assets/images/support/support-bg-1.jpg);*/
 	background-position: top center;
 	background-size: cover;
 	background-repeat: no-repeat;

@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 use App\Meta;
+use App\Photo;
 use App\Repositories\MetaRepositoryInterface;
 
 
@@ -17,6 +18,11 @@ class MetaRepository implements MetaRepositoryInterface
         return Meta::findOrFail($id);
     }
 
+
+    public function getFirstActiveMeta()
+    {
+        return Meta::where('status',1)->first();
+    }
     public function allWithPaginate($page)
     {
         return Meta::paginate($page);
@@ -72,6 +78,7 @@ class MetaRepository implements MetaRepositoryInterface
         $meta = $this->findById($id);
         $meta->delete();
     }
+
 
 
 }

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\CompanyRepositoryInterface;
+use App\Repositories\Eloquent\CompanyRepository;
 use App\Repositories\Eloquent\GalleryRepository;
 use App\Repositories\Eloquent\MenuRepository;
 use App\Repositories\Eloquent\MetaRepository;
@@ -39,5 +41,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(MenuRepositoryInterface::class,MenuRepository::class);
         $this->app->bind(PostRepositoryInterface::class,PostRepository::class);
         $this->app->bind(MetaRepositoryInterface::class,MetaRepository::class);
+        $this->app->bind(CompanyRepositoryInterface::class,CompanyRepository::class);
     }
 }
