@@ -2,7 +2,7 @@
         <li class="nav-item dropdown dropdown-list">
         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
             <em class="icon-bell"></em>
-            <span class="badge badge-danger" v-if="unreads.length!==0">{{unreads.length}}</span>
+            <span class="badge badge-danger" v-if="unreadNotifications.length!==0">{{unreadNotifications.length}}</span>
             <span class="badge badge-danger" v-else></span>
         </a>
         <!-- START Dropdown menu-->
@@ -11,26 +11,19 @@
                 <!-- START list group-->
                 <div class="list-group">
                     <!-- list item-->
-                    <div class="list-group-item list-group-item-action" v-for="unread in unreads" v-if="unreads.length!==0">
+                    <div class="list-group-item list-group-item-action" v-for="unreadNotification in unreadNotifications" v-if="unreadNotifications.length!==0">
                         <div class="media">
                             <div class="align-self-start mr-2">
                                 <em class="fas fa-envelope fa-2x text-warning"></em>
                             </div>
                             <div class="media-body">
                                 <p class="m-0 text-muted ">ایمیل های جدید</p>
-                                <p class="m-0 text-sm">از طرف :  {{unread.data.user.name}}</p>
+                                <p @click="handleClick(unreadNotification)"  class="m-0 text-sm"><span>از طرف :</span>{{unreadNotification.data.user.name}} </p>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item list-group-item-action" v-else>
-                        <div class="media">
-                            <div class="align-self-start mr-2">
-                                <em class=""></em>
-                            </div>
-                            <div class="media-body text-center orangered">
-                                <p class="m-0">پیغام جدیدی ندارید</p>
-                            </div>
-                        </div>
+                    <div class="text-center alert alert-danger" style="margin-bottom:0" v-if="unreadNotifications.length===0">
+                        <cpan class="">پیغام جدیدی ندارید</cpan>
                     </div>
                 </div>
                 <!-- END list group-->
@@ -45,16 +38,29 @@
         data(){
             return{
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                unreadNotifications: this.unreads
+                unreadNotifications: this.unreads,
+                userId:''
             }
         },
-        props:['unreads'],
+        props:['unreads','userid'],
         mounted() {
-            Echo.private('contact-channel' )
+            Echo.private('App.User.' + this.userid )
                 .notification((notification) => {
-                    let newUnreadNotification = {data: {order: notification.order, user: notification.user}};
+                    console.log(notification.user)
+                     let newUnreadNotification =  {data: {contact: notification.contact, user: notification.user}};
                     this.unreadNotifications.push(newUnreadNotification);
+
+
                 });
         },
+        methods: {
+            handleClick(unreadNotification) {
+                axios.post('mark', {id: unreadNotification['id']})
+                    .then(response => {
+                        //window.location.href="orders/"+unreadNotification.data.order.id+"/edit ";
+                        location.reload();
+                    });
+            }
+        }
     }
 </script>

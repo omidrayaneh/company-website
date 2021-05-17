@@ -43,6 +43,8 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('galleries','Admin\GalleryController');
         Route::resource('metas','Admin\MetaController');
         Route::get('post-galleries','Admin\GalleryController@post_index')->name('posts.galleries.index');
+        Route::post('mark','Admin\ContactController@markAsRead')->name('mark.contact');
+        Route::post('read-contact','Admin\ContactController@readContact')->name('read.contact');
     });
 });
 

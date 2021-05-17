@@ -1943,34 +1943,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      unreadNotifications: this.unreads
+      unreadNotifications: this.unreads,
+      userId: ''
     };
   },
-  props: ['unreads'],
+  props: ['unreads', 'userid'],
   mounted: function mounted() {
     var _this = this;
 
-    Echo["private"]('contact-channel').notification(function (notification) {
+    Echo["private"]('App.User.' + this.userid).notification(function (notification) {
+      console.log(notification.user);
       var newUnreadNotification = {
         data: {
-          order: notification.order,
+          contact: notification.contact,
           user: notification.user
         }
       };
 
       _this.unreadNotifications.push(newUnreadNotification);
     });
+  },
+  methods: {
+    handleClick: function handleClick(unreadNotification) {
+      axios.post('mark', {
+        id: unreadNotification['id']
+      }).then(function (response) {
+        //window.location.href="orders/"+unreadNotification.data.order.id+"/edit ";
+        location.reload();
+      });
+    }
   }
 });
 
@@ -43809,9 +43814,9 @@ var render = function() {
       [
         _c("em", { staticClass: "icon-bell" }),
         _vm._v(" "),
-        _vm.unreads.length !== 0
+        _vm.unreadNotifications.length !== 0
           ? _c("span", { staticClass: "badge badge-danger" }, [
-              _vm._v(_vm._s(_vm.unreads.length))
+              _vm._v(_vm._s(_vm.unreadNotifications.length))
             ])
           : _c("span", { staticClass: "badge badge-danger" })
       ]
@@ -43825,34 +43830,59 @@ var render = function() {
           _c(
             "div",
             { staticClass: "list-group" },
-            _vm._l(_vm.unreads, function(unread) {
-              return _vm.unreads.length !== 0
-                ? _c(
-                    "div",
-                    { staticClass: "list-group-item list-group-item-action" },
-                    [
-                      _c("div", { staticClass: "media" }, [
-                        _vm._m(0, true),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "media-body" }, [
-                          _c("p", { staticClass: "m-0 text-muted " }, [
-                            _vm._v("ایمیل های جدید")
-                          ]),
+            [
+              _vm._l(_vm.unreadNotifications, function(unreadNotification) {
+                return _vm.unreadNotifications.length !== 0
+                  ? _c(
+                      "div",
+                      { staticClass: "list-group-item list-group-item-action" },
+                      [
+                        _c("div", { staticClass: "media" }, [
+                          _vm._m(0, true),
                           _vm._v(" "),
-                          _c("p", { staticClass: "m-0 text-sm" }, [
-                            _vm._v("از طرف :  " + _vm._s(unread.data.user.name))
+                          _c("div", { staticClass: "media-body" }, [
+                            _c("p", { staticClass: "m-0 text-muted " }, [
+                              _vm._v("ایمیل های جدید")
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "p",
+                              {
+                                staticClass: "m-0 text-sm",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.handleClick(unreadNotification)
+                                  }
+                                }
+                              },
+                              [
+                                _c("span", [_vm._v("از طرف :")]),
+                                _vm._v(
+                                  _vm._s(unreadNotification.data.user.name) +
+                                    " "
+                                )
+                              ]
+                            )
                           ])
                         ])
-                      ])
-                    ]
-                  )
-                : _c(
+                      ]
+                    )
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _vm.unreadNotifications.length === 0
+                ? _c(
                     "div",
-                    { staticClass: "list-group-item list-group-item-action" },
-                    [_vm._m(1)]
+                    {
+                      staticClass: "text-center alert alert-danger",
+                      staticStyle: { "margin-bottom": "0" }
+                    },
+                    [_c("cpan", {}, [_vm._v("پیغام جدیدی ندارید")])],
+                    1
                   )
-            }),
-            0
+                : _vm._e()
+            ],
+            2
           )
         ])
       ]
@@ -43866,18 +43896,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "align-self-start mr-2" }, [
       _c("em", { staticClass: "fas fa-envelope fa-2x text-warning" })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "media" }, [
-      _c("div", { staticClass: "align-self-start mr-2" }, [_c("em", {})]),
-      _vm._v(" "),
-      _c("div", { staticClass: "media-body text-center orangered" }, [
-        _c("p", { staticClass: "m-0" }, [_vm._v("پیغام جدیدی ندارید")])
-      ])
     ])
   }
 ]
@@ -56144,7 +56162,7 @@ var app = new Vue({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -56177,7 +56195,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
-window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_1__["default"]({
+window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "f11fef07830cd0befafb",
   cluster: "eu",

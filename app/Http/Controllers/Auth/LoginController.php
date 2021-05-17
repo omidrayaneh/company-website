@@ -35,7 +35,7 @@ class LoginController extends Controller
     //check user is active
     protected function credentials(Request $request)
     {
-        return[ 'password'=>$request->password,'active' => 1];
+        return[ 'email'=>$request->email,'password'=>$request->password,'active' => 1];
     }
 
 
