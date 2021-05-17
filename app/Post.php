@@ -20,7 +20,7 @@ class Post extends Model
     }
     public static function generateSKU()
     {
-        $number = 'KC-'.mt_rand(1000, 99999);
+        $number = 'YS-'.mt_rand(1000, 99999);
         if (Post::checkSKU($number)) {
             return Post::generateSKU();
         }
@@ -33,5 +33,9 @@ class Post extends Model
     public function menu()
     {
         return $this->belongsTo(Menu::class);
+    }
+    public function photo()
+    {
+        return $this->belongsTo(Photo::class);
     }
 }

@@ -54,11 +54,6 @@
                             <small class="text-danger">@error('map') {{$message}}@enderror</small>
                         </div>
                         <div class="form-group">
-                            <label>{{__('phone')}}</label>
-                            <input class="form-control" name="phone" type="text" value="{{old('phone')}}" placeholder="{{__('phone')}}">
-                            <small class="text-danger">@error('phone') {{$message}}@enderror</small>
-                        </div>
-                        <div class="form-group">
                             <label>{{__('aparat')}}</label>
                             <input class="form-control" name="aparat" type="text" value="{{old('aparat')}}" placeholder="{{__('aparat')}}">
                             <small class="text-danger">@error('aparat') {{$message}}@enderror</small>

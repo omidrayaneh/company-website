@@ -1,4 +1,4 @@
-<header class="topnavbar-wrapper">
+<header class="topnavbar-wrapper" id="app">
     <!-- START Top Navbar-->
     <nav class="navbar topnavbar">
         <!-- START navbar header-->
@@ -57,65 +57,7 @@
                 </a>
             </li>
             <!-- START Alert menu-->
-            <li class="nav-item dropdown dropdown-list">
-                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
-                    <em class="icon-bell"></em>
-                    <span class="badge badge-danger">11</span>
-                </a>
-                <!-- START Dropdown menu-->
-                <div class="dropdown-menu dropdown-menu-right animated flipInX">
-                    <div class="dropdown-item">
-                        <!-- START list group-->
-                        <div class="list-group">
-                            <!-- list item-->
-                            <div class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <div class="align-self-start mr-2">
-                                        <em class="fab fa-twitter fa-2x text-info"></em>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="m-0">دنبال کننده های جدید</p>
-                                        <p class="m-0 text-muted text-sm">1 دنبال کننده جدید</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- list item-->
-                            <div class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <div class="align-self-start mr-2">
-                                        <em class="fas fa-envelope fa-2x text-warning"></em>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="m-0">ایمیل های جدید</p>
-                                        <p class="m-0 text-muted text-sm">شما 10 ایمیل جدید دارید</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- list item-->
-                            <div class="list-group-item list-group-item-action">
-                                <div class="media">
-                                    <div class="align-self-start mr-2">
-                                        <em class="fas fa-tasks fa-2x text-success"></em>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="m-0">وظایف محول شده</p>
-                                        <p class="m-0 text-muted text-sm">11 وظیفه محول شده جدید</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- last list item-->
-                            <div class="list-group-item list-group-item-action">
-                                        <span class="d-flex align-items-center">
-                                            <span class="text-sm">اعلامیه ها بیشتر</span>
-                                            <span class="badge badge-danger ml-auto">14</span>
-                                        </span>
-                            </div>
-                        </div>
-                        <!-- END list group-->
-                    </div>
-                </div>
-                <!-- END Dropdown menu-->
-            </li>
+            <contact-us :unreads="{{auth()->user()->unreadNotifications}}"></contact-us>
             <!-- END Alert menu-->
             <!-- START Offsidebar button-->
             <li class="nav-item">

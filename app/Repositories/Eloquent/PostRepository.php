@@ -24,7 +24,7 @@ class PostRepository implements PostRepositoryInterface
     }
     public function findBySlugWithRelation($slug)
     {
-        return Post::with('menu')->where('slug',$slug)->first();
+        return Post::with('menu','photo')->where('slug',$slug)->first();
     }
 
     public function allWithPaginate($page)
@@ -35,15 +35,15 @@ class PostRepository implements PostRepositoryInterface
     public function create( $request)
     {
 
-        $inputs = $request->only(['title', 'description', 'status','meta_description','meta_keywords','menu_id','description']);
-
+        $inputs = $request->only(['title', 'description', 'status','meta_description','meta_keywords','menu_id','photo_id','description']);
         $post = new Post();
         $post->title = $inputs['title'];
         $post->menu_id = $inputs['menu_id'];
+        $post->user_id = auth()->id();
+        $post->photo_id =$inputs['photo_id'];
         $post->meta_keywords = $inputs['meta_keywords'];
         $post->meta_description = $inputs['meta_description'];
         $post->description = $inputs['description'];
-        $post->user_id = auth()->id();
         $post->slug = Post::makeSlug($inputs['title']);
         $post->sku = Post::generateSKU();
         if (isset($inputs['status']) && $inputs['status'] =='on')
@@ -66,6 +66,7 @@ class PostRepository implements PostRepositoryInterface
         $post = $this->findBySlug($slug);
         $post->title = $inputs['title'];
         $post->menu_id = $inputs['menu_id'];
+        $post->photo_id =$inputs['photo_id'];
         $post->meta_keywords = $inputs['meta_keywords'];
         $post->meta_description = $inputs['meta_description'];
         $post->description = $inputs['description'];

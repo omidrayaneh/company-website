@@ -55,10 +55,13 @@
 </div>
 <!-- =============== VENDOR SCRIPTS ===============-->
 <!-- MODERNIZR-->
+
 <script src="/admin/vendor/modernizr/modernizr.custom.js"></script>
 <!-- JQUERY-->
 <script src="/admin/vendor/jquery/dist/jquery.js"></script>
 <!-- BOOTSTRAP-->
+<script src="/js/app.js"></script>
+
 <script src="/admin/vendor/popper.js/dist/umd/popper.js"></script>
 <script src="/admin/vendor/bootstrap/dist/js/bootstrap.js"></script>
 <!-- STORAGE API-->
@@ -95,7 +98,6 @@
 <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
 @stack('js')
 
 </body>

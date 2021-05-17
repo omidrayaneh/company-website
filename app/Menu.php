@@ -20,17 +20,18 @@ class Menu extends Model
     }
     public static function generateSKU()
     {
-        $number = 'KC-'.mt_rand(1000, 99999);
+        $number = 'YS-'.mt_rand(1000, 99999);
         if (Menu::checkSKU($number)) {
             return Menu::generateSKU();
         }
         return (string)$number;
     }
 
-    public function post()
+    public function posts()
     {
-        $this->hasMany(Post::class);
+        return $this->hasMany(Post::class);
     }
+
     public static function checkSKU($number)
     {
         return Menu::where('sku',$number)->exists();

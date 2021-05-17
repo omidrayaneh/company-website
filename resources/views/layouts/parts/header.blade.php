@@ -3,8 +3,8 @@
         <div class="container">
             <div class="main-responsive-menu">
                 <div class="logo">
-                    <a href="index.html">
-                        <img src="assets/images/logo.png" alt="logo">
+                    <a href="/">
+                        <img src="{{$logo->path}}" alt="logo">
                     </a>
                 </div>
             </div>
@@ -13,29 +13,58 @@
     <div class="main-navbar">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="index.html">
-                    <img src="assets/images/logo.png" alt="logo">
+                <a class="navbar-brand" href="/">
+                    <img src="{{$logo->path}}" alt="logo">
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
+                            <a href="{{route('home')}}" class="nav-link {{Route::is('home')? 'active':'' }}">
                                 {{__('Go Home')}}
-
                             </a>
                         </li>
+                        @if(count($menus)>0)
+                        @foreach($menus as $menu)
+                        <li class="nav-item">
+                            <a href="#" class="nav-link {{Route::is('')? 'active':'' }}">
+                                {{$menu->title}}
+                                @if(count($menu->childrenRecursive)>0)
+                                <i class="ri-add-line"></i>
+                                @endif
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if(count($menu->childrenRecursive)>0)
+                                    @foreach($menu->childrenRecursive as $subMenu)
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            {{$subMenu->title}}
+                                            @if(count($subMenu->childrenRecursive)>0)
+                                            <i class="ri-arrow-left-s-line"></i>
+                                            @endif
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            @if(count($subMenu->childrenRecursive)>0)
+                                                @foreach($subMenu->childrenRecursive as $item)
+                                                <li class="nav-item">
+                                                    <a href="" class="nav-link">{{$item->title}}</a>
+                                                </li>
+                                                @endforeach
+                                            @endif
+                                        </ul>
+                                    </li>
+                                    @endforeach
+                                @endif
+                            </ul>
+                        </li>
+                        @endforeach
+                        @endif
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                               {{__('About')}}
+                                {{__('About')}}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                {{__('Services')}}
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">{{__('Contact Us')}}</a>
+                            <a href="{{route('contact.index')}}" class="nav-link {{Route::is('contact.index')? 'active':'' }}">{{__('Contact Us')}}</a>
                         </li>
                     </ul>
                     <div class="others-options d-flex align-items-center">
@@ -104,7 +133,7 @@
                             </div>
                         </div>
                         <div class="option-item">
-                            <a href="contact.html" class="default-btn">گفتگو کنید <i class="ri-message-line"></i><span></span></a>
+                            <a href="{{route('contact.index')}}" class="default-btn">گفتگو کنید <i class="ri-message-line"></i><span></span></a>
                         </div>
                         <div class="option-item">
                             <div class="side-menu-btn">
@@ -133,7 +162,7 @@
                     <h3>{{__('About')}}</h3>
                     <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
                     <div class="sidebar-btn">
-                        <a href="contact.html" class="default-btn">گفتگو کنید <i class="ri-message-line"></i><span></span></a>
+                        <a href="{{route('contact.index')}}" class="default-btn">گفتگو کنید <i class="ri-message-line"></i><span></span></a>
                     </div>
                 </div>
                 <div class="sidebar-contact-info">

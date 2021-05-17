@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
             'title'=>'required',
             'description'=>'required',
             'photo_id'=>'required',
-            'parent_id'=>'required',
+            'menu_id'=>'required',
         ];
     }
 }

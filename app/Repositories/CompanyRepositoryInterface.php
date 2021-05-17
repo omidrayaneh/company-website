@@ -6,6 +6,8 @@ interface CompanyRepositoryInterface
 {
     public function all();
 
+    public function findByStatus();
+
     public function findById($id);
 
     public function allWithPaginate($number);

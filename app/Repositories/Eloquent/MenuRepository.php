@@ -24,6 +24,10 @@ class MenuRepository implements MenuRepositoryInterface
         return Menu::where('slug',$slug)->first();
     }
 
+    public function getPostWithMenuId($id)
+    {
+      return  Menu::with('posts')->findOrFail('id',$id);
+    }
     public function allWithPaginate($number)
     {
         return Menu::with(['childrenRecursive'])

@@ -51,7 +51,8 @@ Route::group(['middleware' => ['admin']], function () {
 
 Auth::routes();
 
-Route::get('/{locate?}', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+Route::resource('/contact', 'Frontend\ContactController');
 
 
 

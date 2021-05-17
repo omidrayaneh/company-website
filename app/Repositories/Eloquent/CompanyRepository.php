@@ -13,6 +13,10 @@ class CompanyRepository implements CompanyRepositoryInterface
     {
         return Company::all();
     }
+    public function findByStatus()
+    {
+        return  Company::where('status',1)->first();
+    }
     public function findById($id)
     {
         return Company::findOrFail($id);

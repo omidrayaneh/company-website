@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditPostRequest;
 use App\Http\Requests\PostRequest;
+use App\Menu;
+use App\Post;
 use App\Repositories\Eloquent\MenuRepository;
 use App\Repositories\Eloquent\PostRepository;
 use Illuminate\Http\Request;

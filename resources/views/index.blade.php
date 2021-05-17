@@ -1,12 +1,18 @@
 @extends('layouts.master')
 @section('keywords')
+    @if(isset($meta->keyword))
     <meta name="keywords" content="{{$meta->keyword}}">
+    @endif
 @endsection
 @section('description')
+    @if(isset($meta->description))
     <meta name="description" content="{{$meta->description}}">
+    @endif
 @endsection
 @section('title')
+    @if(isset($meta->title))
     <title>{{__('App Name')}} - {{$meta->title}}</title>
+    @endif
 @endsection
 
 @section('content')
