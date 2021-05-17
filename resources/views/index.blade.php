@@ -11,7 +11,7 @@
 @endsection
 @section('title')
     @if(isset($meta->title))
-    <title>{{__('App Name')}} - {{$meta->title}}</title>
+    <title> {{$meta->title}}</title>
     @endif
 @endsection
 

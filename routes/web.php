@@ -53,6 +53,6 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::resource('/contact', 'Frontend\ContactController');
-
+Route::get('post/{id}','HomeController@post')->name('post');
 
 

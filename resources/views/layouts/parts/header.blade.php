@@ -46,7 +46,7 @@
                                             @if(count($subMenu->childrenRecursive)>0)
                                                 @foreach($subMenu->childrenRecursive as $item)
                                                 <li class="nav-item">
-                                                    <a href="" class="nav-link">{{$item->title}}</a>
+                                                    <a href="{{route('post',$item->slug)}}" class="nav-link">{{$item->title}}</a>
                                                 </li>
                                                 @endforeach
                                             @endif
@@ -155,29 +155,29 @@
             <div class="modal-body">
                 <div class="title">
                     <a href="index.html">
-                        <img src="assets/images/logo.png" alt="logo">
+                        <img src="{{$logo->path}}" alt="logo">
                     </a>
                 </div>
                 <div class="sidebar-content">
                     <h3>{{__('About')}}</h3>
-                    <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است.</p>
+{{--                    <p>{{$company->description}}</p>--}}
                     <div class="sidebar-btn">
                         <a href="{{route('contact.index')}}" class="default-btn">گفتگو کنید <i class="ri-message-line"></i><span></span></a>
                     </div>
                 </div>
                 <div class="sidebar-contact-info">
-                    <h3>اطلاعات مشتری</h3>
+                    <h3> <span> اطلاعات شرکت </span>{{$company->companyName}}</h3>
                     <ul class="info-list">
-                        <li><i class="ri-phone-fill"></i> <a href="tel:04436442728"> (021) 2222 2222</a></li>
-                        <li><i class="ri-mail-line"></i> <a href="mailto:hello@plod.com">hello@plod.com</a></li>
-                        <li><i class="ri-map-pin-line"></i> ایران ، استان تهران ، میدان آزادی ، خیابان 9.</li>
+                        <li><i class="ri-phone-fill"></i> <a href="tel:{{$company->phone}}">{{$company->phone}}</a></li>
+                        <li><i class="ri-mail-line"></i> <a href="mailto:{{$company->email}}">{{$company->email}}</a></li>
+                        <li><i class="ri-map-pin-line"></i>{{$company->address}}</li>
                     </ul>
                 </div>
                 <ul class="sidebar-social-list">
-                    <li><a href="#" target="_blank"><i class="ri-facebook-fill"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="ri-twitter-fill"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
-                    <li><a href="#" target="_blank"><i class="ri-instagram-fill"></i></a></li>
+                    <li><a href="https://www.facebook.com/{{$company->facebook}}" target="_blank"><i class="ri-facebook-fill"></i></a></li>
+                    <li><a href="https://www.twitter.com/{{$company->twitter}}" target="_blank"><i class="ri-twitter-fill"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/{{$company->linkedin}}" target="_blank"><i class="ri-linkedin-fill"></i></a></li>
+                    <li><a href="https://www.instagram.com/{{$company->instagram}}" target="_blank"><i class="ri-instagram-fill"></i></a></li>
                 </ul>
             </div>
         </div>

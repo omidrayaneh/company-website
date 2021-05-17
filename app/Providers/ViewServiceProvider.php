@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Company;
 use App\Menu;
 use App\Photo;
 use Illuminate\Support\Facades\View;
@@ -33,6 +34,10 @@ class ViewServiceProvider extends ServiceProvider
                 ->get();
             $view->with('logo',$logo);
             $view->with('menus',$menus);
+        });
+        View::composer('*',function($view){
+            $company= Company::where('status',1)->first();
+            $view->with('company',$company);
         });
     }
 }

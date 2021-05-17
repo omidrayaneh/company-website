@@ -20,7 +20,7 @@ interface MenuRepositoryInterface
 
     public function findById($id);
 
-    public function getPostWithMenuId($id);
+    public function getPostWithMenuSlug($slug);
 
     public function findBySlug($slug);
 

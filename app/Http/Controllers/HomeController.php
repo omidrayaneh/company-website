@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Eloquent\GalleryRepository;
+use App\Repositories\Eloquent\MenuRepository;
 use App\Repositories\Eloquent\MetaRepository;
+use App\Repositories\Eloquent\PostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -18,12 +20,17 @@ class HomeController extends Controller
      * @var GalleryRepository
      */
     private $photo;
+    /**
+     * @var PostRepository
+     */
+    private $post;
 
-    public function __construct(MetaRepository $meta, GalleryRepository $photo)
+    public function __construct(MetaRepository $meta, GalleryRepository $photo,PostRepository  $post)
     {
 
         $this->meta = $meta;
         $this->photo = $photo;
+        $this->post = $post;
     }
 
     /**
@@ -46,5 +53,11 @@ class HomeController extends Controller
         $mainBackground = $this->photo->getBanner(__('mainBackground'));
         $meta = $this->meta->getFirstActiveMeta();
         return view('index', compact(['meta', 'mainBanner', 'experienceBanner', 'mainBackground', 'serviceBanner', 'employeeBanner']));
+    }
+
+    public function post($slug)
+    {
+        $post = $this->post->findBySlugWithRelation($slug);
+        return view('post.index',compact(['post']));
     }
 }
