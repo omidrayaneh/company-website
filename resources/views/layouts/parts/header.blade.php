@@ -1,4 +1,4 @@
-<div class="navbar-area">
+<div class="navbar-area" id="app">
     <div class="main-responsive-nav">
         <div class="container">
             <div class="main-responsive-menu">

@@ -36,16 +36,15 @@
                         </div>
                         <div class="form-group">
                             <label>{{__('Detail')}}</label>
-                            <textarea class="form-control" name="body" type="text"  disabled placeholder="{{__('body')}}">{{old('body',$contact->body)}}</textarea>
+                            <textarea style="height: 100px" class="form-control" name="body" type="text"  disabled placeholder="{{__('body')}}">{{old('body',$contact->body)}}</textarea>
                             <small class="text-danger">@error('body') {{$message}}@enderror</small>
                         </div>
                         <div class="form-group">
                             <label>{{__('Status')}}</label>
                             <br>
-                            <input @if($contact->status)checked  @endif name="status" type="checkbox"  data-on="{{__('Enable')}}" data-off="{{__('Disable')}}" data-size="sm" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            <input @if($contact->status)checked  disabled @endif name="status" type="checkbox"  data-on="{{__('Read')}}" data-off="{{__('Not Read')}}" data-size="sm" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
                             <small class="text-danger">@error('status') {{$message}}@enderror</small>
                         </div>
-                        <button class="btn btn-info " type="submit">ارسال</button>
                     </form>
                 </div>
             </div>

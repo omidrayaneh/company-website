@@ -1947,8 +1947,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-      unreadNotifications: this.unreads,
-      userId: ''
+      unreadNotifications: this.unreads
     };
   },
   props: ['unreads', 'userid'],
@@ -1969,11 +1968,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     handleClick: function handleClick(unreadNotification) {
-      axios.post('mark', {
-        id: unreadNotification['id']
-      }).then(function (response) {
-        //window.location.href="orders/"+unreadNotification.data.order.id+"/edit ";
-        location.reload();
+      axios.post('/admin/markAsRead', {
+        id: unreadNotification['id'],
+        contactId: unreadNotification.data.user.id
+      }).then(function (res) {
+        window.location.href = "/admin/contacts/" + unreadNotification.data.user.id;
       });
     }
   }
@@ -43877,8 +43876,7 @@ var render = function() {
                       staticClass: "text-center alert alert-danger",
                       staticStyle: { "margin-bottom": "0" }
                     },
-                    [_c("cpan", {}, [_vm._v("پیغام جدیدی ندارید")])],
-                    1
+                    [_c("span", {}, [_vm._v("پیغام جدیدی ندارید")])]
                   )
                 : _vm._e()
             ],

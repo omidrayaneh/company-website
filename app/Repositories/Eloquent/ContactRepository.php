@@ -21,12 +21,15 @@ class ContactRepository implements ContactRepositoryInterface
     }
     public function findById($id)
     {
-        // TODO: Implement findById() method.
+       return Contact::findOrFail($id);
     }
 
     public function allWithPaginate($page)
     {
-        // TODO: Implement allWithPaginate() method.
+        if (auth()->user()->role == 'admin' )
+            return Contact::paginate(10);
+        if (auth()->user()->role != 'admin' )
+           return Contact::where('status',1)->paginate(10);
     }
 
     public function create($request)
@@ -47,12 +50,31 @@ class ContactRepository implements ContactRepositoryInterface
 
     public function update($request, $id)
     {
-        // TODO: Implement update() method.
+//        $contact = $this->findById($id);
+//        if ($contact->status ==null || $contact->status ==0) {
+//            $contact->status =1;
+//        }
+//
+//        $contact->user_id = auth()->id();
+//
+//        $contact->save();
+//        toast('با موفقیت بروز  شد', 'success');
     }
 
     public function delete($id)
     {
-        // TODO: Implement delete() method.
+        $contact = $this->findById($id);
+        $contact->delete();
+    }
+
+
+    public function markAsRead($request)
+    {
+        auth()->user()->unreadNotifications->where('id', $request->id)->markAsRead();
+        $contact = Contact::findOrFail($request->contactId);
+        $contact->status =1;
+        $contact->user_id = auth()->id();
+        $contact->save();
     }
 
 

@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="text-center alert alert-danger" style="margin-bottom:0" v-if="unreadNotifications.length===0">
-                        <cpan class="">پیغام جدیدی ندارید</cpan>
+                        <span class="">پیغام جدیدی ندارید</span>
                     </div>
                 </div>
                 <!-- END list group-->
@@ -39,7 +39,6 @@
             return{
                 csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 unreadNotifications: this.unreads,
-                userId:''
             }
         },
         props:['unreads','userid'],
@@ -55,11 +54,10 @@
         },
         methods: {
             handleClick(unreadNotification) {
-                axios.post('mark', {id: unreadNotification['id']})
-                    .then(response => {
-                        //window.location.href="orders/"+unreadNotification.data.order.id+"/edit ";
-                        location.reload();
-                    });
+                axios.post('/admin/markAsRead', {id: unreadNotification['id'],contactId: unreadNotification.data.user.id})
+                    .then(res =>{
+                        window.location.href="/admin/contacts/"+unreadNotification.data.user.id;
+                });
             }
         }
     }
