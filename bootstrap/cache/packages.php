@@ -63,6 +63,13 @@
       'Alert' => 'RealRashid\\SweetAlert\\Facades\\Alert',
     ),
   ),
+  'spatie/laravel-backup' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\Backup\\BackupServiceProvider',
+    ),
+  ),
   'uxweb/sweet-alert' => 
   array (
     'providers' => 
