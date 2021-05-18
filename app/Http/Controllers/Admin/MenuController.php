@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EditMenuRequest;
 use App\Http\Requests\MenuRequest;
 use App\Repositories\Eloquent\MenuRepository;
-use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {

@@ -1,19 +1,13 @@
 @extends('layouts.master')
-@section('keywords')
-    @if(isset($meta->keyword))
-        <meta name="keywords" content="{{$meta->keyword}}">
-    @endif
-@endsection
-@section('description')
-    @if(isset($meta->description))
-        <meta name="description" content="{{$meta->description}}">
-    @endif
-@endsection
-@section('title')
-    @if(isset($meta->title))
-        <title> {{$meta->title}}</title>
-    @endif
-@endsection
+@push('keywords')
+        <meta name="keywords" content="{{$post->meta_keywords}}">
+@endpush
+@push('description')
+        <meta name="description" content="{{$post->meta_description}}">
+@endpush
+@push('title')
+        <title> {{$post->title}} | {{__('App Name')}}</title>
+@endpush
 @section('content')
 <div class="page-banner-area">
     <div class="container">

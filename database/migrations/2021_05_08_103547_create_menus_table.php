@@ -18,6 +18,8 @@ class CreateMenusTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();;
             $table->boolean('status')->default(0);
+            $table->boolean('added_post')->default(0);
+            $table->boolean('end')->default(0);
 
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('menus')->onDelete('cascade');

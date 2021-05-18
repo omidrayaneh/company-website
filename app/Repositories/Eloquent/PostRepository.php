@@ -50,15 +50,28 @@ class PostRepository implements PostRepositoryInterface
             $post->status = 1;
         else
             $post->status = 0;
-
-
         $post->save();
+
+        //disable parent menu after add post
+        $menus = Menu::with('parentRecursive')->where('id',$request->menu_id)->get();
+        $menus[0]->end = 1;
+        $menus[0]->save();
+        $this->recurcive($menus[0]);
+        //disable parent menu after add post
+
 
         toast('مطلب اضافه شد','success');
 
     }
 
-
+    public function recurcive($menu)
+    {
+        $menu->added_post = 1;
+        $menu->save();
+        if (!empty($menu->parentRecursive)){
+            $this->recurcive($menu->parentRecursive);
+        }
+    }
     public function update($request, $slug)
     {
         $inputs = $request->only(['title', 'description', 'status','meta_description','meta_keywords','menu_id','description']);

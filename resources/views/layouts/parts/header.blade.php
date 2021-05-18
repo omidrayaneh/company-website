@@ -26,17 +26,17 @@
                         @if(count($menus)>0)
                         @foreach($menus as $menu)
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{Route::is('')? 'active':'' }}">
+                            <a href="@if($menu->end) {{route('post',$menu->slug)}} @endif"  class="nav-link {{Route::is('')? 'active':'' }}">
                                 {{$menu->title}}
                                 @if(count($menu->childrenRecursive)>0)
-                                <i class="ri-add-line"></i>
+                                     <i class="ri-add-line"></i>
                                 @endif
                             </a>
                             <ul class="dropdown-menu">
                                 @if(count($menu->childrenRecursive)>0)
                                     @foreach($menu->childrenRecursive as $subMenu)
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
+                                        <a href="@if($subMenu->end) {{route('post',$subMenu->slug)}} @endif" class="nav-link">
                                             {{$subMenu->title}}
                                             @if(count($subMenu->childrenRecursive)>0)
                                             <i class="ri-arrow-left-s-line"></i>
@@ -46,7 +46,7 @@
                                             @if(count($subMenu->childrenRecursive)>0)
                                                 @foreach($subMenu->childrenRecursive as $item)
                                                 <li class="nav-item">
-                                                    <a href="{{route('post',$item->slug)}}" class="nav-link">{{$item->title}}</a>
+                                                    <a href="@if($item->end) {{route('post',$item->slug)}} @endif" class="nav-link">{{$item->title}}</a>
                                                 </li>
                                                 @endforeach
                                             @endif

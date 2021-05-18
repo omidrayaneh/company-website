@@ -47,4 +47,14 @@ class Menu extends Model
         return $this->children()->with('childrenRecursive');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo(Menu::class,'parent_id');
+    }
+
+    public function parentRecursive()
+    {
+        return $this->parent()->with('parentRecursive');
+    }
+
 }

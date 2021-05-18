@@ -19,6 +19,12 @@ class MenuRepository implements MenuRepositoryInterface
     {
         return Menu::findOrFail($id);
     }
+
+    public function getparent($slug)
+    {
+        return  Menu::with('parentRecursive')->where('slug',$slug)->get();
+    }
+
     public function findBySlug($slug)
     {
         return Menu::where('slug',$slug)->first();
@@ -89,6 +95,7 @@ class MenuRepository implements MenuRepositoryInterface
         $Menu = $this->findBySlug($slug);
         $Menu->delete();
     }
+
 
 
 }

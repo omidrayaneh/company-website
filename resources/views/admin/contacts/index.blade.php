@@ -53,7 +53,7 @@
                                 <td>{{Morilog\Jalali\Jalalian::fromDateTime($contact->created_at)}}</td>
                                 <td>
                                     <a href="{{route('contacts.edit',$contact->id)}}" data-toggle="tooltip"
-                                       data-title="{{__('Edit')}}">
+                                       data-title="{{__('Show')}}">
                                         <span class="fa fa-edit blue"></span>
 
                                     </a>

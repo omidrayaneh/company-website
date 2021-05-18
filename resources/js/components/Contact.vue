@@ -48,8 +48,6 @@
                     console.log(notification.user)
                      let newUnreadNotification =  {data: {contact: notification.contact, user: notification.user}};
                     this.unreadNotifications.push(newUnreadNotification);
-
-
                 });
         },
         methods: {

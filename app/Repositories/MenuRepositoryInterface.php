@@ -22,6 +22,8 @@ interface MenuRepositoryInterface
 
     public function getPostWithMenuSlug($slug);
 
+    public function getparent($slug);
+
     public function findBySlug($slug);
 
 }
