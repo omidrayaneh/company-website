@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditPostRequest;
 use App\Http\Requests\PostRequest;
-use App\Menu;
-use App\Post;
 use App\Repositories\Eloquent\MenuRepository;
 use App\Repositories\Eloquent\PostRepository;
 use Illuminate\Http\Request;
@@ -59,6 +57,14 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+
+        $menu = $this->menu->findById($request->menu_id);
+
+
+        if ($menu->added_post && $menu->end){
+            alert('خطا','قبلا مطلبی اختصاص یافته است','error')->autoclose(2000);
+          return  back()->withInput();
+        }
        $this->post->create($request);
         return redirect('admin/posts');
     }
@@ -97,6 +103,16 @@ class PostController extends Controller
      */
     public function update(EditPostRequest $request, $slug)
     {
+        $post = $this->post->findBySlugWithRelation($slug);
+        $menu = $this->menu->findById($request->menu_id);
+
+        if ($menu->added_post && $menu->end && $post->menu_id != $menu->id){
+            alert('خطا','قبلا مطلبی اختصاص یافته است','error')->autoclose(2000);
+            return  back()->withInput();
+        }
+
+
+
         $this->post->update($request,$slug);
         return redirect('admin/posts');
     }

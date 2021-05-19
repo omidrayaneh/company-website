@@ -25,9 +25,10 @@ class EditPostRequest extends FormRequest
     {
         return [
             'title'=>'required',
+            'slug'=>'unique:menus,slug,' . $this->menu,
             'description'=>'required',
             'photo_id'=>'required',
-            'parent_id'=>'required',
+            'menu_id'=>'required',
         ];
     }
 }

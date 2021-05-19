@@ -1,19 +1,19 @@
 @extends('layouts.master')
-@section('keywords')
+@push('keywords')
     @if(isset($meta->keyword))
     <meta name="keywords" content="{{$meta->keyword}}">
     @endif
-@endsection
-@section('description')
+@endpush
+@push('description')
     @if(isset($meta->description))
     <meta name="description" content="{{$meta->description}}">
     @endif
-@endsection
-@section('title')
+@endpush
+@push('title')
     @if(isset($meta->title))
     <title> {{$meta->title}}</title>
     @endif
-@endsection
+@endpush
 
 @section('content')
     <div class="main-banner-area without-banner-animation">
@@ -278,7 +278,7 @@
 {{--        </div>--}}
 {{--    </div>--}}
 
-
+@if(count($posts)>0)
     <div class="cases-area ptb-100">
         <div class="container">
             <div class="section-title">
@@ -288,73 +288,73 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    @if(isset($serviceBanner[0]))
+                    @if(isset($posts[0]))
                     <div class="single-cases">
                         <div class="cases-image">
-                            <a href="case-study-details.html">
-                                <img src="{{$serviceBanner[0]->path}}" alt="image">
+                            <a href="{{route('post',$posts[0]->menu->slug)}}">
+                                <img src="{{$posts[0]->photo->path}}" alt="image">
                             </a>
                         </div>
                         <div class="cases-content">
 {{--                            <div class="tag-1">برندینگ</div>--}}
 {{--                            <div class="tag-2">توسعه دهنده</div>--}}
                             <h3>
-                                <a href="case-study-details.html">{{$serviceBanner[0]->title}}</a>
+                                <a href="{{route('post',$posts[0]->menu->slug)}}">{{$posts[0]->title}}</a>
                             </h3>
-                            <p>{!! $serviceBanner[0]->detail !!}</p>
+                            <p>{!! \Str::limit($posts[0]->description,50) !!}</p>
                         </div>
                     </div>
                     @endif
-                    @if(isset($serviceBanner[1]))
+                    @if(isset($posts[1]))
                     <div class="single-cases">
                         <div class="cases-image">
-                            <a href="case-study-details.html">
-                                <img src="{{$serviceBanner[1]->path}}" alt="image">
+                            <a href="{{route('post',$posts[1]->menu->slug)}}">
+                                <img src="{{$posts[1]->photo->path}}" alt="image">
                             </a>
                         </div>
                         <div class="cases-content">
                             {{--                            <div class="tag-1">برندینگ</div>--}}
                             {{--                            <div class="tag-2">توسعه دهنده</div>--}}
                             <h3>
-                                <a href="case-study-details.html">{{$serviceBanner[1]->title}}</a>
+                                <a href="{{route('post',$posts[1]->menu->slug)}}">{{$posts[1]->title}}</a>
                             </h3>
-                            <p>{!! $serviceBanner[1]->detail !!}</p>
+                            <p>{!! $posts[1]->description !!}</p>
                         </div>
                     </div>
                     @endif
                 </div>
                 <div class="col-lg-6">
-                    @if(isset($serviceBanner[2]))
+                    @if(isset($posts[2]))
                     <div class="single-cases">
                         <div class="cases-image">
-                            <a href="case-study-details.html">
-                                <img src="{{$serviceBanner[2]->path}}" alt="image">
+                            <a href="{{route('post',$posts[2]->menu->slug)}}">
+                                <img src="{{$posts[2]->photo->path}}" alt="image">
                             </a>
                         </div>
                         <div class="cases-content">
                             {{--                            <div class="tag-1">برندینگ</div>--}}
                             {{--                            <div class="tag-2">توسعه دهنده</div>--}}
                             <h3>
-                                <a href="case-study-details.html">{{$serviceBanner[2]->title}}</a>
+                                <a href="{{route('post',$posts[2]->menu->slug)}}">{{$posts[2]->title}}</a>
                             </h3>
-                            <p>{!! $serviceBanner[2]->detail !!}</p>
+                            <p>{!! $posts[2]->description !!}</p>
                         </div>
                     </div>
                     @endif
-                    @if(isset($serviceBanner[3]))
+                    @if(isset($posts[3]))
                     <div class="single-cases">
                         <div class="cases-image">
-                            <a href="case-study-details.html">
-                                <img src="{{$serviceBanner[3]->path}}" alt="image">
+                            <a href="{{route('post',$posts[3]->menu->slug)}}">
+                                <img src="{{$posts[3]->photo->path}}" alt="image">
                             </a>
                         </div>
                         <div class="cases-content">
                             {{--                            <div class="tag-1">برندینگ</div>--}}
                             {{--                            <div class="tag-2">توسعه دهنده</div>--}}
                             <h3>
-                                <a href="case-study-details.html">{{$serviceBanner[3]->title}}</a>
+                                <a href="{{route('post',$posts[3]->menu->slug)}}">{{$posts[3]->title}}</a>
                             </h3>
-                            <p>{!! $serviceBanner[3]->detail !!}</p>
+                            <p>{!! $posts[3]->description !!}</p>
                         </div>
                     </div>
                     @endif
@@ -366,7 +366,7 @@
             </div>
         </div>
     </div>
-
+@endif
 
 {{--    <div class="clients-area ptb-100">--}}
 {{--        <div class="container">--}}
@@ -534,8 +534,8 @@
 
 
 
-
-    <div class="team-area pt-100 pb-70">
+    @if(count($employeeBanner)>0)
+         <div class="team-area pt-100 pb-70">
         <div class="container">
             <div class="section-title">
                 <h2>مدیران تيم ما</h2>
@@ -580,7 +580,7 @@
             </div>
         </div>
     </div>
-
+    @endif
 
 {{--    <div class="blog-area pb-70">--}}
 {{--        <div class="container">--}}

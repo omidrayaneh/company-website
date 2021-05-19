@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group ">
                             <label>{{__('Create New Photo')}}</label>
-                            <input type="hidden" name="photo_id" id="uploaded-photo" value="{{old('photo_id')}}">
+                            <input type="hidden" name="photo_id" id="uploaded-photo" value="{{old('photo_id',$post->photo->id)}}">
                             <div id="photo" class="dropzone "></div>
                             <small class="text-danger">@error('photo_id') {{$message}}@enderror</small>
                         </div>

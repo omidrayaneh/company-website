@@ -52,7 +52,8 @@ class HomeController extends Controller
         $experienceBanner = $this->photo->getBanner(__('experienceBanner'));
         $mainBackground = $this->photo->getBanner(__('mainBackground'));
         $meta = $this->meta->getFirstActiveMeta();
-        return view('index', compact(['meta', 'mainBanner', 'experienceBanner', 'mainBackground', 'serviceBanner', 'employeeBanner']));
+        $posts = $this->post->all();
+        return view('index', compact(['meta', 'mainBanner', 'experienceBanner', 'mainBackground', 'serviceBanner', 'employeeBanner','posts']));
     }
 
     public function post($slug)

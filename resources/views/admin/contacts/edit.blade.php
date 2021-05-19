@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label>{{__('Status')}}</label>
                         <br>
-                        <input @if($contact->status)checked  @endif name="status" type="checkbox"  data-on="{{__('Enable')}}" data-off="{{__('Disable')}}" data-size="sm" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                        <input @if($contact->status)checked  @endif name="status" type="checkbox"  disabled data-on="{{__('Enable')}}" data-off="{{__('Disable')}}" data-size="sm" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
                         <small class="text-danger">@error('status') {{$message}}@enderror</small>
                     </div>
                 </div>

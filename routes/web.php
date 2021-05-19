@@ -51,7 +51,7 @@ Route::group(['middleware' => ['admin']], function () {
 
         Route::get('contacts/{id}','Admin\ContactController@show')->name('contacts.show');
 
-        Route::get('contacts','Admin\ContactController@index')->name('admin.contacts.index');
+        Route::get('contacts','Admin\ContactController@index')->name('contacts.index');
     });
 });
 

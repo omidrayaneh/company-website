@@ -30,7 +30,14 @@
                 </li>
                 <li class="{{Route::is('admin.dashboard')? 'active':'' }}">
                     <a href="{{route('admin.dashboard')}}" title="{{__('Dashboard')}}">
+                        <em class="fa fa-cogs yellowgreen"></em>
                         <span>{{__('Dashboard')}}</span>
+                    </a>
+                </li>
+                <li class="{{Route::is('contacts.index')? 'active':'' }}">
+                    <a href="{{route('contacts.index')}}" title="{{__('Contacts')}}">
+                        <em class="fa fa-envelope tomato"></em>
+                        <span>{{__('Contacts')}}</span>
                     </a>
                 </li>
                 <li class="{{Route::is('galleries.index')? 'active':'' }}">

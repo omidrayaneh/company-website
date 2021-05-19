@@ -7,16 +7,17 @@
                         <li><i class="ri-phone-fill"></i> <a href="tel:{{$company->phone}}">{{$company->phone}}</a></li>
                         <li><i class="ri-mail-line"></i> <a href="mailto:{{$company->email}}">{{$company->email}}</a></li>
                         <li><i class="ri-map-pin-line"></i>{{$company->address}}</li>
+                    </ul>
                 </div>
             </div>
             <div class="col-lg-2 col-sm-3">
                 <div class="single-footer-widget">
                     <h3>لینکهای سریع</h3>
                     <ul class="footer-links-list">
-                        <li><a href="about-1.html">درباره ما</a></li>
+                        <li><a href="#">درباره ما</a></li>
                         <li><a href="{{route('contact.index')}}">تماس با ما</a></li>
-                        <li><a href="faq.html">سوالات متداول</a></li>
-                        <li><a href="privacy-policy.html">حریم خصوصی</a></li>
+                        <li><a href="#">سوالات متداول</a></li>
+                        <li><a href="#">حریم خصوصی</a></li>
                     </ul>
                 </div>
             </div>
@@ -24,13 +25,13 @@
                 <div class="single-footer-widget">
                     <h3>درباره ما</h3>
                     <ul class="footer-links-list">
-                        <li><a href="gallery.html">گالری</a></li>
-                        <li><a href="about-1.html">درباره ما</a></li>
-                        <li><a href="contact.html">تماس با ما</a></li>
-                        <li><a href="purchase-guide.html">راهنمای خرید</a></li>
-                        <li><a href="terms-of-service.html">قوانین خدمات</a></li>
-                        <li><a href="faq.html">سوالات متداول</a></li>
-                        <li><a href="privacy-policy.html">حریم خصوصی</a></li>
+{{--                        <li><a href="gallery.html">گالری</a></li>--}}
+                        <li><a href="#">درباره ما</a></li>
+{{--                        <li><a href="contact.html">تماس با ما</a></li>--}}
+{{--                        <li><a href="purchase-guide.html">راهنمای خرید</a></li>--}}
+{{--                        <li><a href="terms-of-service.html">قوانین خدمات</a></li>--}}
+                        <li><a href="#">سوالات متداول</a></li>
+                        <li><a href="#">حریم خصوصی</a></li>
                     </ul>
                 </div>
             </div>
@@ -38,13 +39,13 @@
                 <div class="single-footer-widget">
                     <h3>خدمات</h3>
                     <ul class="footer-links-list">
-                        <li><a href="pricing.html">قیمت گذاری</a></li>
-                        <li><a href="services-details.html">دیجیتال مارکتینگ</a></li>
-                        <li><a href="purchase-guide.html">راهنمای خرید</a></li>
-                        <li><a href="contact.html">پشتیبانی</a></li>
-                        <li><a href="testimonials.html">بازخورد مشتریان</a></li>
-                        <li><a href="services-details.html">پردازش ابری</a></li>
-                        <li><a href="privacy-policy.html">حریم خصوصی</a></li>
+{{--                        <li><a href="pricing.html">قیمت گذاری</a></li>--}}
+{{--                        <li><a href="services-details.html">دیجیتال مارکتینگ</a></li>--}}
+{{--                        <li><a href="purchase-guide.html">راهنمای خرید</a></li>--}}
+                        <li><a href="#">پشتیبانی</a></li>
+                        <li><a href="#">بازخورد مشتریان</a></li>
+{{--                        <li><a href="services-details.html">پردازش ابری</a></li>--}}
+                        <li><a href="#">حریم خصوصی</a></li>
                     </ul>
                 </div>
             </div>

@@ -4,7 +4,6 @@ namespace App\Repositories\Eloquent;
 use App\Post;
 use App\Menu;
 use App\Repositories\PostRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
 
 
 class PostRepository implements PostRepositoryInterface
@@ -12,7 +11,7 @@ class PostRepository implements PostRepositoryInterface
 
     public function all()
     {
-        return Post::all();
+        return Post::with('photo','menu')->where('status',1)->latest ()->limit(4)->get();
     }
     public function findById($id)
     {
@@ -36,6 +35,7 @@ class PostRepository implements PostRepositoryInterface
     {
 
         $inputs = $request->only(['title', 'description', 'status','meta_description','meta_keywords','menu_id','photo_id','description']);
+        $flag=true;
         $post = new Post();
         $post->title = $inputs['title'];
         $post->menu_id = $inputs['menu_id'];
@@ -72,11 +72,29 @@ class PostRepository implements PostRepositoryInterface
             $this->recurcive($menu->parentRecursive);
         }
     }
+    public function recurcive_remove($menu)
+    {
+        $menu->added_post = 0;
+        $menu->save();
+        if (!empty($menu->parentRecursive)){
+            $this->recurcive_remove($menu->parentRecursive);
+        }
+    }
     public function update($request, $slug)
     {
-        $inputs = $request->only(['title', 'description', 'status','meta_description','meta_keywords','menu_id','description']);
-
+        $inputs = $request->only(['title', 'description', 'status','meta_description','meta_keywords','menu_id','photo_id','description']);
         $post = $this->findBySlug($slug);
+        $menu = Menu::findOrFail($request->menu_id);
+        if ($post->menu_id != $menu->id){
+            $menus_remove = Menu::with('parentRecursive')->where('id',$post->menu_id)->get();
+            //disable parent menu after add post
+            $menus_remove[0]->end = 0;
+            $menus_remove[0]->save();
+            $this->recurcive_remove($menus_remove[0]);
+            //disable parent menu after add post
+        }
+
+
         $post->title = $inputs['title'];
         $post->menu_id = $inputs['menu_id'];
         $post->photo_id =$inputs['photo_id'];
@@ -93,6 +111,13 @@ class PostRepository implements PostRepositoryInterface
 
 
         $post->save();
+        $flag=true;
+        //disable parent menu after add post
+        $menus = Menu::with('parentRecursive')->where('id',$inputs['menu_id'])->get();
+        $menus[0]->end = 1;
+        $menus[0]->save();
+        $this->recurcive($menus[0]);
+        //disable parent menu after add post
 
         toast('مطلب بروز شد','success');
 

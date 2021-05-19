@@ -137,6 +137,14 @@
                                 window.location.replace('/admin/menus');
                             }, 500);
                             Toast.fire({icon: 'success', title: 'منو با موفقیت حذف شد'})
+                        },
+                        error: function (err) {
+                            Swal.fire({
+                                title:'خطا',
+                                text: 'امکان حذف وجود ندارد',
+                                icon:'error',
+                                timer:1500
+                            })
                         }
                     })
                 } else {

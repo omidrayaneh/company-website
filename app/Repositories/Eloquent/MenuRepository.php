@@ -52,6 +52,16 @@ class MenuRepository implements MenuRepositoryInterface
 
         $inputs = $request->only(['title', 'parent_id', 'status']);
 
+        if (!empty($inputs['parent_id'])){
+            $parent = $this->findById($inputs['parent_id']);
+            if ($parent->end){
+               alert('خطا','این امکان وجود ندارد','error')->autoclose(1500);
+                return;
+            }
+
+        }
+
+
         $Menu = new Menu();
         $Menu->title = $inputs['title'];
         $Menu->parent_id = $inputs['parent_id'];
