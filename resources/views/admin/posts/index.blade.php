@@ -29,6 +29,7 @@
                         <thead>
                         <tr class="text-center">
                             <th>{{__('Row')}}</th>
+                            <th>{{__('Photo')}}</th>
                             <th>{{__('Title')}}</th>
                             <th>{{__('Status')}}</th>
                             <th>{{__('Created At')}}</th>
@@ -39,6 +40,7 @@
                         @foreach($posts as $key =>$post )
                             <tr class="text-center">
                                 <td>{{$posts->currentPage() == 1 ? $key+1: (($posts->perPage()*($posts->currentPage()-1)))+$key+1}}</td>
+                                <td><img height="50" width="50" src="{{$post->photo->path}}" alt=""></td>
                                 <td>{{$post->title}}</td>
                                 <td>
                                     @if($post->status)
@@ -68,7 +70,6 @@
                                         @method('DELETE')
                                         {{--                                        <input type="hidden" name="_method" value="DELETE">--}}
                                     </form>
-                                </td>
                                 </td>
                             </tr>
                         @endforeach
@@ -123,7 +124,6 @@
                 if (res) {
                     var id = $(this).data("id");
                     var token = $("meta[name='csrf-token']").attr("content");
-
                     $.ajax({
                         url: "/admin/posts/" + id,
                         type: "DELETE",
@@ -146,7 +146,6 @@
             });
 
         });
-
     </script>
 @endpush
 

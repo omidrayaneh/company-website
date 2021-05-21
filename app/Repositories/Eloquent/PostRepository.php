@@ -25,17 +25,23 @@ class PostRepository implements PostRepositoryInterface
     {
         return Post::with('menu','photo')->where([['slug',$slug],['status',1]])->first();
     }
-
+    public function findByMenu($id)
+    {
+        return Post::with('menu','photo')->where([['menu_id',$id],['status',1]])->first();
+    }
+    public function findByPost($slug)
+    {
+        return Post::with('menu','photo')->where([['slug',$slug],['status',1]])->first();
+    }
     public function allWithPaginate($page)
     {
-        return  Post::with('menu')->paginate($page);
+        return  Post::with('menu','photo')->paginate($page);
     }
 
     public function create( $request)
     {
 
         $inputs = $request->only(['title', 'description', 'status','meta_description','meta_keywords','menu_id','photo_id','description']);
-        $flag=true;
         $post = new Post();
         $post->title = $inputs['title'];
         $post->menu_id = $inputs['menu_id'];
@@ -125,8 +131,8 @@ class PostRepository implements PostRepositoryInterface
 
     public function delete($slug)
     {
-        $post = $this->findBySlug($slug);
-        $post->delete();
+        //$post = $this->findBySlug($slug);
+       // $post->delete();
     }
 
 

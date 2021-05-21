@@ -148,9 +148,7 @@
                     <div class="col-lg-6">
                         <div class="experiences-item">
                             <div class="experiences-content">
-                                <div class="tag">
-                                    <img src="{{$experienceBanner->path}}" alt="image">
-                                </div>
+
                                 <h3>{{$experienceBanner->title}}</h3>
                                {!! $experienceBanner->detail !!}
                             </div>
@@ -158,7 +156,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="experiences-image" data-speed="0.02" data-revert="true">
-                            <img src="assets/images/experiences/experiences-1.png" alt="image">
+                            <img src="{{$experienceBanner->path}}" alt="image">
                         </div>
                     </div>
                 </div>
@@ -278,11 +276,11 @@
 {{--        </div>--}}
 {{--    </div>--}}
 
-@if(count($posts)>0)
+    @if(count($posts)>0)
     <div class="cases-area ptb-100">
         <div class="container">
             <div class="section-title">
-                <h2>خدمات ما</h2>
+                <h2>مطالب جدید</h2>
 {{--                <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم--}}
 {{--                    ساختار چاپ و متن را در بر می گیرد.</p>--}}
             </div>
@@ -291,7 +289,7 @@
                     @if(isset($posts[0]))
                     <div class="single-cases">
                         <div class="cases-image">
-                            <a href="{{route('post',$posts[0]->menu->slug)}}">
+                            <a href="{{route('post',$posts[0]->slug)}}">
                                 <img src="{{$posts[0]->photo->path}}" alt="image">
                             </a>
                         </div>
@@ -299,35 +297,16 @@
 {{--                            <div class="tag-1">برندینگ</div>--}}
 {{--                            <div class="tag-2">توسعه دهنده</div>--}}
                             <h3>
-                                <a href="{{route('post',$posts[0]->menu->slug)}}">{{$posts[0]->title}}</a>
+                                <a href="{{route('post',$posts[0]->slug)}}">{{$posts[0]->title}}</a>
                             </h3>
-                            <p>{!! \Str::limit($posts[0]->description,50) !!}</p>
+                            <p>{!! \Str::limit($posts[0]->description,100) !!}</p>
                         </div>
                     </div>
                     @endif
-                    @if(isset($posts[1]))
-                    <div class="single-cases">
-                        <div class="cases-image">
-                            <a href="{{route('post',$posts[1]->menu->slug)}}">
-                                <img src="{{$posts[1]->photo->path}}" alt="image">
-                            </a>
-                        </div>
-                        <div class="cases-content">
-                            {{--                            <div class="tag-1">برندینگ</div>--}}
-                            {{--                            <div class="tag-2">توسعه دهنده</div>--}}
-                            <h3>
-                                <a href="{{route('post',$posts[1]->menu->slug)}}">{{$posts[1]->title}}</a>
-                            </h3>
-                            <p>{!! $posts[1]->description !!}</p>
-                        </div>
-                    </div>
-                    @endif
-                </div>
-                <div class="col-lg-6">
                     @if(isset($posts[2]))
                     <div class="single-cases">
                         <div class="cases-image">
-                            <a href="{{route('post',$posts[2]->menu->slug)}}">
+                            <a href="{{route('post',$posts[2]->slug)}}">
                                 <img src="{{$posts[2]->photo->path}}" alt="image">
                             </a>
                         </div>
@@ -335,16 +314,35 @@
                             {{--                            <div class="tag-1">برندینگ</div>--}}
                             {{--                            <div class="tag-2">توسعه دهنده</div>--}}
                             <h3>
-                                <a href="{{route('post',$posts[2]->menu->slug)}}">{{$posts[2]->title}}</a>
+                                <a href="{{route('post',$posts[2]->slug)}}">{{$posts[2]->title}}</a>
                             </h3>
-                            <p>{!! $posts[2]->description !!}</p>
+                            <p>{!!  \Str::limit($posts[2]->description,100) !!}</p>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+                <div class="col-lg-6">
+                    @if(isset($posts[1]))
+                    <div class="single-cases">
+                        <div class="cases-image">
+                            <a href="{{route('post',$posts[1]->slug)}}">
+                                <img src="{{$posts[1]->photo->path}}" alt="image">
+                            </a>
+                        </div>
+                        <div class="cases-content">
+                            {{--                            <div class="tag-1">برندینگ</div>--}}
+                            {{--                            <div class="tag-2">توسعه دهنده</div>--}}
+                            <h3>
+                                <a href="{{route('post',$posts[1]->slug)}}">{{$posts[1]->title}}</a>
+                            </h3>
+                            <p>{!!  \Str::limit($posts[1]->description,100) !!}</p>
                         </div>
                     </div>
                     @endif
                     @if(isset($posts[3]))
                     <div class="single-cases">
                         <div class="cases-image">
-                            <a href="{{route('post',$posts[3]->menu->slug)}}">
+                            <a href="{{route('post',$posts[3]->slug)}}">
                                 <img src="{{$posts[3]->photo->path}}" alt="image">
                             </a>
                         </div>
@@ -352,9 +350,9 @@
                             {{--                            <div class="tag-1">برندینگ</div>--}}
                             {{--                            <div class="tag-2">توسعه دهنده</div>--}}
                             <h3>
-                                <a href="{{route('post',$posts[3]->menu->slug)}}">{{$posts[3]->title}}</a>
+                                <a href="{{route('post',$posts[3]->slug)}}">{{$posts[3]->title}}</a>
                             </h3>
-                            <p>{!! $posts[3]->description !!}</p>
+                            <p>{!!  \Str::limit($posts[3]->description,100) !!}</p>
                         </div>
                     </div>
                     @endif
@@ -367,8 +365,99 @@
         </div>
     </div>
 @endif
+    @if(count($serviceBanner)>0)
+        <div class="cases-area ptb-100">
+            <div class="container">
+                <div class="section-title">
+                    <h2>خدمات ما</h2>
+                    <br>
+{{--                    <p>لورم ایپسوم ساختار چاپ و متن را در بر می گیرد. لورم ایپسوم استاندارد صنعت بوده است. لورم ایپسوم ساختار--}}
+{{--                        چاپ و متن را در بر می گیرد.</p>--}}
+                    <div class="row">
+                        <div class="col-lg-6">
+                            @if(isset($serviceBanner[0]))
+                                <div class="single-cases">
+                                    <div class="cases-image">
+                                        <a href="#">
+                                            <img src="{{$serviceBanner[0]->path}}" alt="image">
+                                        </a>
+                                    </div>
+                                    <div class="cases-content">
+                                        {{--                            <div class="tag-1">برندینگ</div>--}}
+                                        {{--                            <div class="tag-2">توسعه دهنده</div>--}}
+                                        <h3>
+                                            <a href="#">{{$serviceBanner[0]->title}}</a>
+                                        </h3>
+                                        <p>{!! $serviceBanner[0]->detail !!}</p>
+                                    </div>
+                                </div>
+                            @endif
+                            @if(isset($serviceBanner[2]))
+                                <div class="single-cases">
+                                    <div class="cases-image">
+                                        <a href="#">
+                                            <img src="{{$serviceBanner[2]->path}}" alt="image">
+                                        </a>
+                                    </div>
+                                    <div class="cases-content">
+                                        {{--                            <div class="tag-1">برندینگ</div>--}}
+                                        {{--                            <div class="tag-2">توسعه دهنده</div>--}}
+                                        <h3>
+                                            <a href="#">{{$serviceBanner[2]->title}}</a>
+                                        </h3>
+                                        <p>{!! $serviceBanner[2]->detail !!}</p>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="col-lg-6">
+                            @if(isset($serviceBanner[1]))
+                                <div class="single-cases">
+                                    <div class="cases-image">
+                                        <a href="#">
+                                            <img src="{{$serviceBanner[1]->path}}" alt="image">
+                                        </a>
+                                    </div>
+                                    <div class="cases-content">
+                                        {{--                            <div class="tag-1">برندینگ</div>--}}
+                                        {{--                            <div class="tag-2">توسعه دهنده</div>--}}
+                                        <h3>
+                                            <a href="#">{{$serviceBanner[1]->title}}</a>
+                                        </h3>
+                                        <p>{!! $serviceBanner[1]->detail !!}</p>
+                                    </div>
+                                </div>
+                            @endif
+                            @if(isset($serviceBanner[3]))
+                                <div class="single-cases">
+                                    <div class="cases-image">
+                                        <a href="#">
+                                            <img src="{{$serviceBanner[3]->path}}" alt="image">
+                                        </a>
+                                    </div>
+                                    <div class="cases-content">
+                                        {{--                            <div class="tag-1">برندینگ</div>--}}
+                                        {{--                            <div class="tag-2">توسعه دهنده</div>--}}
+                                        <h3>
+                                            <a href="#">{{$serviceBanner[3]->title}}</a>
+                                        </h3>
+                                        <p>{!! $serviceBanner[3]->detail !!}</p>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+                        {{--                <div class="cases-view-all-btn">--}}
+                        {{--                    <a href="case-study-1.html" class="default-btn">مشاهده پروژه ها <i--}}
+                        {{--                            class="ri-briefcase-line"></i><span></span></a>--}}
+                        {{--                </div>--}}
+                    </div>
+                </div>
+            </div>
+        </div>
+         @endif
 
-{{--    <div class="clients-area ptb-100">--}}
+
+    {{--    <div class="clients-area ptb-100">--}}
 {{--        <div class="container">--}}
 {{--            <div class="section-title">--}}
 {{--                <h2>مشتریان محترم ما</h2>--}}

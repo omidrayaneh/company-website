@@ -119,12 +119,12 @@
             acceptedMimeTypes: null,
             acceptParameter: null,
             enqueueForUpload: true,
-            dictDefaultMessage: "افزودن عکس محصول",
-            dictFileTooBig: "اندازه عکس بزرگ است",// image size error message
+            dictDefaultMessage: "افزودن تصویر",
+            dictFileTooBig: "اندازه تصویر بزرگ است",// image size error message
             dictInvalidFileType: "فرمت فایل اشتباه است",// file type error message
             dictCancelUpload: "لغو آپلود",//cancel error message
             dictCancelUploadConfirmation: "آیا می خواهید آپلود را متوقف کنید؟", //cancel conform
-            dictMaxFilesExceeded: "برای هر محصول فقط 5 عکس می توانید آپلود کنید",
+            dictMaxFilesExceeded: "برای هر محصول فقط 5 تصویر می توانید آپلود کنید",
             dictRemoveFile: "حذف",// remove file
             clickable: true,
             url: "{{ route('galleries.store') }}",

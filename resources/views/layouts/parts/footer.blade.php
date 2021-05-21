@@ -4,9 +4,11 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="single-footer-widget">
                     <ul class="widget-info">
+                        @if(!empty($company))
                         <li><i class="ri-phone-fill"></i> <a href="tel:{{$company->phone}}">{{$company->phone}}</a></li>
                         <li><i class="ri-mail-line"></i> <a href="mailto:{{$company->email}}">{{$company->email}}</a></li>
                         <li><i class="ri-map-pin-line"></i>{{$company->address}}</li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -64,6 +66,7 @@
                         </form>
                     </div>
                     <ul class="widget-social">
+                        @if(!empty($company))
                         <li><a href="https://www.facebook.com/{{$company->facebook}}" target="_blank"><i
                                     class="ri-facebook-fill"></i></a></li>
                         <li><a href="https://www.twitter.com/{{$company->twitter}}" target="_blank"><i
@@ -72,6 +75,7 @@
                                     class="ri-linkedin-fill"></i></a></li>
                         <li><a href="https://www.instagram.com/{{$company->instagram}}" target="_blank"><i
                                     class="ri-instagram-fill"></i></a></li>
+                        @endif
                     </ul>
                 </div>
             </div>

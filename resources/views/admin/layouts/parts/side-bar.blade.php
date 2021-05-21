@@ -11,13 +11,13 @@
                             <!-- User picture-->
                             <div class="user-block-picture">
                                 <div class="user-block-status">
-                                    <img class="img-thumbnail rounded-circle" src="/admin/img/user/02.jpg" alt="Avatar" width="60" height="60">
+                                    <img class="img-thumbnail rounded-circle" src="/admin/img/user/02.png" alt="Avatar" width="60" height="60">
                                     <div class="circle bg-success circle-lg"></div>
                                 </div>
                             </div>
                             <!-- Name and Job-->
                             <div class="user-block-info">
-                                <span class="user-block-name">سلام، رضا</span>
+                                <span class="user-block-name">سلام، {{auth()->user()->name}}</span>
                                 <span class="user-block-role">طراح رابط کاربری</span>
                             </div>
                         </div>

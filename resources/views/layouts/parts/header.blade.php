@@ -4,7 +4,9 @@
             <div class="main-responsive-menu">
                 <div class="logo">
                     <a href="/">
+                        @if(!empty($logo))
                         <img src="{{$logo->path}}" alt="logo">
+                        @endif
                     </a>
                 </div>
             </div>
@@ -14,7 +16,10 @@
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" href="/">
-                    <img src="{{$logo->path}}" alt="logo">
+
+                    @if(!empty($logo))
+                        <img src="{{$logo->path}}" alt="logo">
+                    @endif
                 </a>
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav m-auto">
@@ -58,11 +63,11 @@
                         </li>
                         @endforeach
                         @endif
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                {{__('About')}}
-                            </a>
-                        </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="#" class="nav-link">--}}
+{{--                                {{__('About')}}--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li class="nav-item">
                             <a href="{{route('contact.index')}}" class="nav-link {{Route::is('contact.index')? 'active':'' }}">{{__('Contact Us')}}</a>
                         </li>
@@ -147,7 +152,7 @@
     </div>
 </div>
 
-
+@if(!empty($company))
 <div class="sidebarModal modal right fade" id="sidebarModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -155,7 +160,9 @@
             <div class="modal-body">
                 <div class="title">
                     <a href="index.html">
-                        <img src="{{$logo->path}}" alt="logo">
+                        @if(!empty($logo))
+                            <img src="{{$logo->path}}" alt="logo">
+                        @endif
                     </a>
                 </div>
                 <div class="sidebar-content">
@@ -183,3 +190,4 @@
         </div>
     </div>
 </div>
+@endif

@@ -12,6 +12,10 @@ interface PostRepositoryInterface
 
     public function findBySlugWithRelation($page);
 
+    public function findByMenu($id);
+
+    public function findByPost($slug);
+
     public function create($request);
 
     public function delete($slug);

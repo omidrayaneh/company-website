@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditPostRequest;
 use App\Http\Requests\PostRequest;
+use App\Menu;
 use App\Repositories\Eloquent\MenuRepository;
 use App\Repositories\Eloquent\PostRepository;
 use Illuminate\Http\Request;
@@ -61,7 +62,7 @@ class PostController extends Controller
         $menu = $this->menu->findById($request->menu_id);
 
 
-        if ($menu->added_post && $menu->end){
+        if ($menu->added_post ){
             alert('خطا','قبلا مطلبی اختصاص یافته است','error')->autoclose(2000);
           return  back()->withInput();
         }
@@ -126,6 +127,21 @@ class PostController extends Controller
     public function destroy($slug)
     {
         $post = $this->post->findBySlug($slug);
+        $menus_remove = Menu::with('parentRecursive')->where('id',$post->menu->id)->get();
+        //disable parent menu after add post
+        $menus_remove[0]->end = 0;
+        $menus_remove[0]->save();
+        $this->recurcive_remove($menus_remove[0]);
         $post->delete();
+    }
+
+
+    public function recurcive_remove($menu)
+    {
+        $menu->added_post = 0;
+        $menu->save();
+        if (!empty($menu->parentRecursive)){
+            $this->recurcive_remove($menu->parentRecursive);
+        }
     }
 }
