@@ -67,6 +67,27 @@
                         </li>
                     </ul>
                 </li>
+                <li class="{{Route::is('companies.index')? 'active':'' }}">
+                    <a href="#companies" title="Layouts" data-toggle="collapse">
+                        <em class="fa fa-building blue"></em>
+                        <span>{{__('Company')}}</span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('companies.index')? 'show ':'' }}" id="companies">
+                        <li class="sidebar-subnav-header">{{__('Companies')}}</li>
+                        <li class=" {{Route::is('companies.index')? 'active ':'' }}">
+                            <a href="{{route('companies.index')}}" title="Horizontal">
+                                <em class="fa fa-list-alt limegreen"></em>
+                                <span>{{__('Company List')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('companies.create')? 'active ':'' }}">
+                            <a href="{{route('companies.create')}}" title="Horizontal">
+                                <em class="fa fa-plus limegreen"></em>
+                                <span>{{__('New Company')}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="{{Route::is('users.index')? 'active':'' }}">
                     <a href="#users" title="Layouts" data-toggle="collapse">
                         <em class="fa fa-users blue"></em>
