@@ -34,6 +34,12 @@
                         <span>{{__('Dashboard')}}</span>
                     </a>
                 </li>
+                <li class="{{Route::is('tickets.index')? 'active':'' }}">
+                    <a href="{{route('tickets.index')}}" title="{{__('Tickets')}}">
+                        <em class="fa fa-ticket-alt indigo"></em>
+                        <span>{{__('Tickets')}}</span>
+                    </a>
+                </li>
                 <li class="{{Route::is('contacts.index')? 'active':'' }}">
                     <a href="{{route('contacts.index')}}" title="{{__('Contacts')}}">
                         <em class="fa fa-envelope tomato"></em>

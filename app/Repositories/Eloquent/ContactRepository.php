@@ -68,7 +68,7 @@ class ContactRepository implements ContactRepositoryInterface
     }
 
 
-    public function markAsRead($request)
+    public function markAsRead_contact($request)
     {
         auth()->user()->unreadNotifications->where('id', $request->id)->markAsRead();
         $contact = Contact::findOrFail($request->contactId);
@@ -77,5 +77,9 @@ class ContactRepository implements ContactRepositoryInterface
         $contact->save();
     }
 
+    public function markAsRead($request)
+    {
+        auth()->user()->unreadNotifications->where('id', $request->id)->markAsRead();
+    }
 
 }

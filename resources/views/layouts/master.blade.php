@@ -10,6 +10,11 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="stylesheet" href="/admin/vendor/_40fortawesome/fontawesome-free-webfonts/css/fa-brands.css">
+    <link rel="stylesheet" href="/admin/vendor/_40fortawesome/fontawesome-free-webfonts/css/fa-regular.css">
+    <link rel="stylesheet" href="/admin/vendor/_40fortawesome/fontawesome-free-webfonts/css/fa-solid.css">
+    <link rel="stylesheet" href="/admin/vendor/_40fortawesome/fontawesome-free-webfonts/css/fontawesome.css">
+
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.rtl.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/css/animate.min.css')}}">

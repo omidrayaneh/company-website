@@ -1,5 +1,6 @@
 <template>
-        <li class="nav-item dropdown dropdown-list">
+        <li class="nav-item dropdown dropdown-list" data-toggle="tooltip"
+            data-title="تماس جدید">
         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown">
             <em class="icon-bell"></em>
             <span class="badge badge-danger" v-if="unreadNotifications.length!==0">{{unreadNotifications.length}}</span>
@@ -46,13 +47,15 @@
             Echo.private('App.User.' + this.userid )
                 .notification((notification) => {
                     console.log(notification.user)
-                     let newUnreadNotification =  {data: {contact: notification.contact, user: notification.user}};
-                    this.unreadNotifications.push(newUnreadNotification);
+                    if (notification.type ==='App\\Notifications\\ContactAlert') {
+                        let newUnreadNotification = {data: {contact: notification.contact, user: notification.user}};
+                        this.unreadNotifications.push(newUnreadNotification);
+                    }
                 });
         },
         methods: {
             handleClick(unreadNotification) {
-                axios.post('/admin/markAsRead', {id: unreadNotification['id'],contactId: unreadNotification.data.user.id})
+                axios.post('/admin/markAsRead-contact', {id: unreadNotification['id'],contactId: unreadNotification.data.user.id})
                     .then(res =>{
                         window.location.href="/admin/contacts/"+unreadNotification.data.user.id;
                 });

@@ -20,4 +20,6 @@ interface ContactRepositoryInterface
     public function delete($id);
 
     public function markAsRead($request);
+
+    public function markAsRead_contact($request);
 }

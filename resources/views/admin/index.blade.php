@@ -1,8 +1,4 @@
 @extends('admin.layouts.master')
-@push('css')
-
-    <script src="https://cdn.tiny.cloud/1/d2fbqjugzvz3kei69gnni08zsvsjdv7k3773u2qcvzecfv37/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-@endpush
 @section('title')
     <title>{{__('App Name')}}</title>
 @endsection
@@ -86,5 +82,3 @@
         </div>
     </section>
 @endsection
-@push('js')
-@endpush

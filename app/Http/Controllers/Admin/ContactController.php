@@ -31,6 +31,10 @@ class ContactController extends Controller
     {
         $this->contact->markAsRead($request);
     }
+    public function markAsRead_contact(Request $request)
+    {
+        $this->contact->markAsRead($request);
+    }
 
     public function readContact(Request $request)
     {

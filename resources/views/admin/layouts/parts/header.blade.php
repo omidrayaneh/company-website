@@ -57,7 +57,10 @@
                 </a>
             </li>
             <!-- START Alert menu-->
-            <contact-us :userid="{{auth()->id()}}" :unreads="{{auth()->user()->unreadNotifications}}"></contact-us>
+            <contact-us :userid="{{auth()->id()}}" :unreads="{{$unread_contacts}}"></contact-us>
+            <ticket :userid="{{auth()->id()}}" :unreads="{{$unread_tickets}}"></ticket>
+            <comment :userid="{{auth()->id()}}" :unreads="{{$unread_comments}}" ></comment>
+
             <!-- END Alert menu-->
             <!-- START Offsidebar button-->
             <li class="nav-item">

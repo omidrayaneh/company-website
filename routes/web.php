@@ -44,7 +44,8 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('galleries','Admin\GalleryController');
         Route::resource('metas','Admin\MetaController');
         Route::get('post-galleries','Admin\GalleryController@post_index')->name('posts.galleries.index');
-        Route::post('markAsRead','Admin\ContactController@markAsRead')->name('mark.contact');
+        Route::post('markAsRead','Admin\ContactController@markAsRead')->name('markAsRead');
+        Route::post('markAsRead-contact','Admin\ContactController@markAsRead_contact')->name('mark.contact');
 
         Route::get('contacts/{id}/edit','Admin\ContactController@edit')->name('contacts.edit');
         Route::delete('contacts/{id}','Admin\ContactController@destroy')->name('contacts.destroy');
@@ -53,16 +54,39 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('contacts/{id}','Admin\ContactController@show')->name('contacts.show');
 
         Route::get('contacts','Admin\ContactController@index')->name('contacts.index');
+
+        Route::get('tickets', 'Admin\TicketsController@index')->name('tickets.index');
+        Route::get('tickets/edit/{id}', 'Admin\TicketsController@edit')->name('ticket.edit');
+        Route::post('tickets/update', 'Admin\TicketsController@update')->name('ticket.update');
+
     });
 });
 
 
-
-
 Auth::routes();
 
+
+Route::group(['middleware'=>'auth'], function() {
+    // Route::get('/profile', 'Frontend\UserController@profile')->name('user.profile');
+    Route::resource('/contact', 'Frontend\ContactController');
+
+    Route::get('/profile/new_ticket', 'TicketsController@create')->name('ticket.create');
+
+    Route::get('/profile/tickets', 'TicketsController@userTickets')->name('profile.tickets');
+    Route::post('/new_ticket', 'TicketsController@store');
+
+    Route::get('/profile/tickets/{ticket_id}', 'TicketsController@show');
+
+    Route::post('comment', 'CommentsController@postComment')->name('comment');
+    Route::get('/profile', 'HomeController@profile');
+    Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
+
+});
+
+
 Route::get('/', 'HomeController@index')->name('home');
-Route::resource('/contact', 'Frontend\ContactController');
 Route::get('post/{id}','HomeController@post')->name('post');
+
+
 
 

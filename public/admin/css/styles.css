@@ -4,6 +4,9 @@
 .blue{
     color: #0a53be;
 }
+.grey{
+    color: grey;
+}
 .green{
     color: green;
 }
@@ -38,6 +41,13 @@
 }
 .navy{
     color:navy;
+}
+
+.bg-grey {
+    background-color: #c1bfbf !important;
+}
+.bg-card{
+    background-color: #e8e0e0 !important;
 }
 
 .swal-footer {

@@ -167,5 +167,8 @@ return [
         'photo_id'              => 'تصویر',
         'parent_id'              => 'منو',
         'keyword'              => 'کلمات سئو',
+        "category"              => 'گروه',
+        "priority"              => 'درجه اهمیت',
+        "message"              => 'متن پیام',
     ],
 ];

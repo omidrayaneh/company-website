@@ -2983,6 +2983,10 @@ margin-right: 15px
 .plans-area.bg-transparent-color .single-plans-table:hover .plans-btn .default-btn span {
 	background-color: #0064fb
 }
+.bg-grey{
+    background-color: #b6b6b6 !important;
+}
+
 .plans-area.bg-color .single-plans-table .plans-features-list {
 	margin-top: 20px
 }
@@ -6017,6 +6021,10 @@ right: 0;
 	text-align: center;
 	max-width: 1050px;
 	margin: auto
+}
+.profile {
+    max-width: 1050px;
+    margin: auto
 }
 .contact-form h3 {
 	font-size: 28px;
@@ -9229,4 +9237,9 @@ right: 6px;
 	box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
 	-webkit-transform: translateY(-5px);
 	transform: translateY(-5px)
+}
+.logout-i{
+    color: red;
+    float: left;
+    padding-top: 6px;
 }

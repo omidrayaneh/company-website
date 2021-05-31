@@ -72,4 +72,9 @@ class HomeController extends Controller
         $post = $this->post->findByMenu($menu_->id);
         return view('post.index',compact(['post']));
     }
+
+    public function profile()
+    {
+        return view('profile.index');
+    }
 }
