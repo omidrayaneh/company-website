@@ -41,5 +41,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

@@ -94,6 +94,27 @@
                         </li>
                     </ul>
                 </li>
+                <li class="{{Route::is('categories.index')? 'active':'' }}">
+                    <a href="#categories" title="Layouts" data-toggle="collapse">
+                        <em class="fa fa-object-group darkred"></em>
+                        <span>{{__('Category')}}</span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('categories.index')? 'show ':'' }}" id="categories">
+                        <li class="sidebar-subnav-header">{{__('Categories')}}</li>
+                        <li class=" {{Route::is('categories.index')? 'active ':'' }}">
+                            <a href="{{route('categories.index')}}" title="Horizontal">
+                                <em class="fa fa-list-alt darkred"></em>
+                                <span>{{__('Category List')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('categories.create')? 'active ':'' }}">
+                            <a href="{{route('categories.create')}}" title="Horizontal">
+                                <em class="fa fa-plus darkred"></em>
+                                <span>{{__('New Category')}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="{{Route::is('users.index')? 'active':'' }}">
                     <a href="#users" title="Layouts" data-toggle="collapse">
                         <em class="fa fa-users blue"></em>

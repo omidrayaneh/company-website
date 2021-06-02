@@ -32,7 +32,8 @@ class TicketEventListener
         $notification = new TicketAlert($ticket);
         $admins = User::where('role' ,'admin')->get();
         foreach ($admins as $admin){
-            $admin->notify($notification);
+            if ($admin->category_id == $ticket->category_id)
+              $admin->notify($notification);
         }
     }
 }

@@ -30,19 +30,22 @@ Route::get('/clearcache', function() {
 /********************  admin panel ****************************************/
 Route::group(['middleware' => ['admin']], function () {
     Route::prefix('admin/')->group(function (){
+        Route::resource('users','Admin\UserController');
+        Route::resource('menus','Admin\MenuController');
+        Route::resource('posts','Admin\PostController');
+        Route::resource('companies','Admin\CompanyController');
+        Route::resource('galleries','Admin\GalleryController');
+        Route::resource('metas','Admin\MetaController');
+        Route::resource('categories','Admin\CategoryController');
+        Route::resource('files','Admin\FileController');
+
         Route::get('dashboard','Admin\AdminController@index')->name('admin.dashboard');
         Route::get('photos','Admin\PhotoController@index')->name('photos.index');
         Route::post('photos/update/{id}','Admin\PhotoController@update')->name('photos.update');
         Route::post('photos/create','Admin\PhotoController@store')->name('photos.store');
         Route::post('photos/destroy/{id}','Admin\PhotoController@destroy')->name('photos.destroy');
-        Route::resource('users','Admin\UserController');
-        Route::resource('menus','Admin\MenuController');
-        Route::resource('posts','Admin\PostController');
         Route::get('delete/{slug}','Admin\PostController@deletePost');
-        Route::resource('companies','Admin\CompanyController');
         Route::delete('galleries/delete/{name}', 'Admin\GalleryController@delete')->name('galleries.delete');
-        Route::resource('galleries','Admin\GalleryController');
-        Route::resource('metas','Admin\MetaController');
         Route::get('post-galleries','Admin\GalleryController@post_index')->name('posts.galleries.index');
         Route::post('markAsRead','Admin\ContactController@markAsRead')->name('markAsRead');
         Route::post('markAsRead-contact','Admin\ContactController@markAsRead_contact')->name('mark.contact');
@@ -64,6 +67,7 @@ Route::group(['middleware' => ['admin']], function () {
 
 
 Auth::routes();
+Auth::routes(['register' => false]);
 
 
 Route::group(['middleware'=>'auth'], function() {
@@ -71,15 +75,22 @@ Route::group(['middleware'=>'auth'], function() {
     Route::resource('/contact', 'Frontend\ContactController');
 
     Route::get('/profile/new_ticket', 'TicketsController@create')->name('ticket.create');
+    Route::post('/new_ticket', 'TicketsController@store');
 
     Route::get('/profile/tickets', 'TicketsController@userTickets')->name('profile.tickets');
-    Route::post('/new_ticket', 'TicketsController@store');
 
     Route::get('/profile/tickets/{ticket_id}', 'TicketsController@show');
 
     Route::post('comment', 'CommentsController@postComment')->name('comment');
-    Route::get('/profile', 'HomeController@profile');
+    Route::get('/profile', 'HomeController@profile')->name('profile');
     Route::post('close_ticket/{ticket_id}', 'TicketsController@close');
+
+    Route::patch('update-user','HomeController@update_user')->name('user.update');
+    Route::get('profile/upload','HomeController@file')->name('user.file');
+    Route::get('profile/files','HomeController@files')->name('user.files');
+    Route::post('profile/upload','UploadFileController@upload')->name('file.store');
+    Route::delete('profile/file/destroy/{id}','UploadFileController@destroy')->name('files.destroy');
+
 
 });
 

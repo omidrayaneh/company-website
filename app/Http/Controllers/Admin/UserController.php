@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\UserRequest;
+use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\UserRepository;
 use Illuminate\Http\Request;
 
@@ -13,23 +14,28 @@ class UserController extends Controller
 
 
     private $user;
+    /**
+     * @var CategoryRepository
+     */
+    private $category;
 
-    public function __construct(UserRepository $user)
+    public function __construct(UserRepository $user,CategoryRepository $category)
     {
         $this->user = $user;
+        $this->category = $category;
     }
 
     public function index(Request $request)
     {
         $users = $this->user->allWithPaginate(10);
-       // return $date = Jalalian::forge('today')->format('%A  ');
-        return view('admin.users.index',compact('users'));
+        return view('admin.users.index',compact(['users']));
     }
 
 
     public function create()
     {
-        return view('admin.users.create');
+        $cat = $this->category->allActive();
+        return view('admin.users.create',compact(['cat']));
     }
 
 
@@ -48,7 +54,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->user->findById($id);
-        return view('admin.users.edit',compact(['user']));
+        $cat = $this->category->allActive();
+        return view('admin.users.edit',compact(['user','cat']));
     }
 
 

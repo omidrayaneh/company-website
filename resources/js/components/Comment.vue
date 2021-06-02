@@ -2,7 +2,7 @@
         <li class="nav-item dropdown dropdown-list" data-toggle="tooltip"
             data-title="کامنت جدید">
             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-toggle="dropdown" >
-                <em class="icon-event"></em>
+                <em class="icon-note orangered"></em>
                 <span class="badge badge-danger" v-if="unreadNotifications.length!==0">{{unreadNotifications.length}}</span>
                 <span class="badge badge-danger" v-else></span>
             </a>

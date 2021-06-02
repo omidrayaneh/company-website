@@ -20,7 +20,7 @@ class TicketsController extends Controller
 
     public function index()
     {
-        $tickets = Ticket::paginate(10);
+        $tickets = Ticket::where('category_id',\auth()->user()->category_id)->paginate(10);
         $unreads =collect();
         foreach (auth()->user()->unreadNotifications as $notification) {
             if ($notification->type == 'App\Notifications\TicketAlert')

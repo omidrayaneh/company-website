@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
+use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\Eloquent\GalleryRepository;
 use App\Repositories\Eloquent\MenuRepository;
 use App\Repositories\Eloquent\MetaRepository;
 use App\Repositories\Eloquent\PostRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -76,5 +79,31 @@ class HomeController extends Controller
     public function profile()
     {
         return view('profile.index');
+    }
+
+    public function update_user(UpdateUserRequest $request)
+    {
+        $inputs = $request->only(['name', 'password']);
+        $user = auth()->user();
+        $user->name = $inputs['name'];
+
+        if (isset($inputs['password']))
+            $user->password =Hash::make($inputs['password']) ;
+        $user->save();
+        return redirect()->back()->with("status", "اطلاعات کاربری شما بروز شد.");
+
+
+
+    }
+
+    public function file()
+    {
+       // $files = File::all();
+        return view('profile.file');
+    }
+    public function files()
+    {
+        $files = File::paginate(10);
+        return view('profile.files',compact(['files']));
     }
 }

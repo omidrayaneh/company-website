@@ -28,13 +28,16 @@
                             <label>{{__('Email')}}</label>
                             <input class="form-control" name="email" type="email" value="{{old('email',$user->email)}}" placeholder="{{__('Email')}}">
                             <small class="text-danger">@error('email') {{$message}}@enderror</small>
-
                         </div>
                         <div class="form-group">
-                            <label>{{__('Action Status')}}</label>
-                            <br>
-                            <input name="active" @if($user->active) checked @endif type="checkbox" data-on="فعال" data-off="غیرفعال" data-size="sm" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
-                            <small class="text-danger">@error('active') {{$message}}@enderror</small>
+                            <label>{{__('Category')}} - <span class="red">{{__('Only For Admin')}}</span></label>
+                            <select name="category" class="form-control">
+                                <option value="" >{{__('Select')}}</option>
+                                @foreach($cat as $category)
+                                    <option @if($user->category_id ==$category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            <small class="text-danger">@error('role') {{$message}}@enderror</small>
                         </div>
                         <div class="form-group">
                             <label>{{__('Role')}}</label>
@@ -45,7 +48,12 @@
                                 <option value="manager" @if($user->role =='manager') selected @endif>{{__('Manager')}}</option>
                             </select>
                             <small class="text-danger">@error('role') {{$message}}@enderror</small>
-
+                        </div>
+                        <div class="form-group">
+                            <label>{{__('Action Status')}}</label>
+                            <br>
+                            <input name="active" @if($user->active) checked @endif type="checkbox" data-on="فعال" data-off="غیرفعال" data-size="sm" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            <small class="text-danger">@error('active') {{$message}}@enderror</small>
                         </div>
                         <div class="form-group">
                             <label>{{__('Password')}}</label>

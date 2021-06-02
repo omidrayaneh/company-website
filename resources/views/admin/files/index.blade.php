@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    <title>{{__('Ticket List')}}</title>
+    <title>{{__('Users File List')}}</title>
 @endsection
 @section('content')
     <section class="section-container">
@@ -8,14 +8,14 @@
         <div class="content-wrapper">
             <div class="content-heading">
                 <div>
-                    {{__('Ticket List')}}
+                    {{__('Users File List')}}
                     <small data-localize="dashboard.WELCOME"></small>
                 </div>
             </div>
             <!-- START cards box-->
             <div class="card card-default">
                 <div class="d-flex justify-content-between ">
-                    <div class="card-header ">{{__('Ticket Table List')}}</div>
+                    <div class="card-header ">{{__('Users File Table List')}} - {{$files[0]->user->name}}</div>
                     <div class="float-right">
 
                     </div>
@@ -27,44 +27,31 @@
                         <thead>
                         <tr class="text-center">
                             <th>{{__('Row')}}</th>
-                            <th>{{__('Title')}}</th>
-                            <th>{{__('Status')}}</th>
+                            <th>{{__('Files')}}</th>
+                            <th>{{__('Download Link')}}</th>
                             <th>{{__('Created At')}}</th>
                             <th>{{__('Action')}}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($tickets as $key =>$ticket )
+                        @foreach($files as $key =>$file )
                             <tr class="text-center">
-                                <td>{{$tickets->currentPage() == 1 ? $key+1: (($tickets->perPage()*($tickets->currentPage()-1)))+$key+1}}</td>
-                                <td>{{$ticket->title}}</td>
-                                <td>
-                                    @if($ticket->status)
-                                        <span class="badge badge-success float-center">{{__('Open')}}</span>
-                                    @else
-                                        <span class="badge badge-danger float-center">{{__('Close')}}</span>
-                                    @endif
-                                </td>
-                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($ticket->created_at)}}</td>
+                                <td>{{$files->currentPage() == 1 ? $key+1: (($files->perPage()*($files->currentPage()-1)))+$key+1}}</td>
+
+                                <td>{{$file->original_name}}</td>
+                                <td><a href="{{asset($file->path)}}">{{__('Download')}}</a></td>
+                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($file->created_at)}}</td>
 
                                 <td>
-                                    <a href="{{route('ticket.edit',$ticket->id)}}" data-toggle="tooltip"
-                                       data-title="{{__('Edit')}}">
-                                        <span class="fa fa-edit blue"></span>
-
-                                    </a>
-                                    |
-
-                                    <a href="#" data-id="{{ $ticket->id }}" class="deleteRecord" data-toggle="tooltip"
+                                    <a href="#" data-id="{{ $file->id }}" class="deleteRecord" data-toggle="tooltip"
                                        data-title="{{__('Delete')}}">
                                         <span class="fa fa-trash red"></span>
                                     </a>
-                                    <input type="hidden" id="user_id" value="{{$ticket->id}}">
-                                    <form action="" id="delete-form"
+                                    <input type="hidden" id="user_id" value="{{$file->id}}">
+                                    <form action="{{ route('files.destroy',  $file->id) }}" id="delete-form"
                                           method="post">
                                         @csrf
-                                        @method('DELETE')
-                                        {{--                                        <input type="hidden" name="_method" value="DELETE">--}}
+                                       @method('PATCH')
                                     </form>
                                 </td>
                             </tr>
@@ -74,7 +61,7 @@
 
                     <br>
                     <div class="d-flex justify-content-center">
-                        {{$tickets->links()}}
+                        {{$files->links()}}
                     </div>
                 </div>
                 <!-- END table-responsive-->
@@ -96,10 +83,10 @@
 
         </div>
     </section>
-
 @endsection
 @push('js')
     <script>
+        var userId = @JSON($files[0]->user->id);
         $(".deleteRecord").click(function () {
 
             swal({
@@ -120,18 +107,19 @@
                 if (res) {
                     var id = $(this).data("id");
                     var token = $("meta[name='csrf-token']").attr("content");
+
                     $.ajax({
-                        url: "/admin/tickets/" + id,
+                        url: "/admin/files/" + id,
                         type: "DELETE",
                         data: {
-                            "slug": id,
+                            "id": id,
                             "_token": token
                         },
                         success: function (res) {
                             setTimeout(function () {
-                                window.location.replace('/admin/tickets');
+                                window.location.replace('/admin/files/'+ userId);
                             }, 500);
-                            Toast.fire({icon: 'success', title: 'منو با موفقیت حذف شد'})
+                            Toast.fire({icon: 'success', title: 'کاربر با موفقیت حذف شد'})
                         }
                     })
                 } else {
@@ -142,6 +130,7 @@
             });
 
         });
+
     </script>
 @endpush
 

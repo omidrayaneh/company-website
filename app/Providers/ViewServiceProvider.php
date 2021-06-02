@@ -79,14 +79,14 @@ class ViewServiceProvider extends ServiceProvider
 //            $admin_comment = Ticket::with('comments')->whereHas('comments',function ($q){
 //               // $q->where('user_type','admin')->orWhere('user_type','manager');
 //            })->where('status',1)->latest()->first();
-            $admin_comment=  Comment::where([['end',1],['user_type','admin']])->orWhere([['end',1],['user_type','manager']])->get();
+            $admin_comment=  Comment::where([['user_type','admin']])->orWhere([['user_type','manager']])->get();
             $view->with('admin_comment',$admin_comment);
         });
         View::composer('profile.*',function($view){
 //            $user_comment = Ticket::whereHas('comments',function ($q){
 //                $q->where('end','=',0);
 //            })->where('status',1)->latest()->first();
-            $user_comment =Comment::where([['end',1],['user_type','user']])->get();
+            $user_comment =Comment::where([['user_type','user']])->get();
             $view->with('user_comment',$user_comment);
         });
     }

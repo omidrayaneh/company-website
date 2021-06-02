@@ -43991,7 +43991,7 @@ var render = function() {
           attrs: { href: "#", "data-toggle": "dropdown" }
         },
         [
-          _c("em", { staticClass: "icon-event" }),
+          _c("em", { staticClass: "icon-note orangered" }),
           _vm._v(" "),
           _vm.unreadNotifications.length !== 0
             ? _c("span", { staticClass: "badge badge-danger" }, [
@@ -44116,7 +44116,7 @@ var render = function() {
           attrs: { href: "#", "data-toggle": "dropdown" }
         },
         [
-          _c("em", { staticClass: "icon-bell" }),
+          _c("em", { staticClass: "icon-bell orangered" }),
           _vm._v(" "),
           _vm.unreadNotifications.length !== 0
             ? _c("span", { staticClass: "badge badge-danger" }, [
@@ -44287,7 +44287,7 @@ var render = function() {
           attrs: { href: "#", "data-toggle": "dropdown" }
         },
         [
-          _c("em", { staticClass: "icon-event" }),
+          _c("em", { staticClass: "icon-event orangered" }),
           _vm._v(" "),
           _vm.unreadNotifications.length !== 0
             ? _c("span", { staticClass: "badge badge-danger" }, [

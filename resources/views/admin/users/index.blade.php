@@ -31,6 +31,7 @@
                             <th>{{__('Row')}}</th>
                             <th>{{__('Email')}}</th>
                             <th>{{__('Role')}}</th>
+                            <th>{{__('Category')}}</th>
                             <th>{{__('Status')}}</th>
                             <th>{{__('Created At')}}</th>
                             <th>{{__('Action')}}</th>
@@ -51,6 +52,11 @@
                                         <span class="badge badge-purple float-center">{{__('Admin')}}</span>
                                     @endif
                                 </td>
+                                @if(!empty($user->category->name))
+                                <td>{{$user->category->name}}</td>
+                                @else
+                                    <td>---</td>
+                                @endif
                                 <td>
                                 @if($user->active)
                                         <span class="badge badge-success float-center">{{__('Accepted')}}</span>
@@ -61,6 +67,12 @@
                                 <td>{{Morilog\Jalali\Jalalian::fromDateTime($user->created_at)}}</td>
 
                                 <td>
+                                    <a href="{{route('files.show',$user->id)}}" data-toggle="tooltip"
+                                       data-title="{{__('Files Users')}}">
+                                        <span class="fa fa-file green"></span>
+
+                                    </a>
+                                    |
                                     <a href="{{route('users.edit',$user->id)}}" data-toggle="tooltip"
                                        data-title="{{__('Edit')}}">
                                         <span class="fa fa-edit blue"></span>

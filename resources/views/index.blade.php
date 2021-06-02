@@ -11,9 +11,12 @@
 @endpush
 @push('title')
     @if(isset($meta->title))
-    <title> {{$meta->title}}</title>
+    <title>{{__('App Name')}} - {{$meta->title}}</title>
+    @else
+        <title>{{__('App Name')}}</title>
     @endif
 @endpush
+
 
 @section('content')
     <div class="main-banner-area without-banner-animation">

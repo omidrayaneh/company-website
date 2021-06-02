@@ -19,9 +19,43 @@
             <div class="row">
                @include('layouts.parts.tickets-sidebar')
                 <div class="col-9">
+                    @include('includes.flash')
                     <div class="container">
-                       پروفایل
+                        <form action="{{route('user.update',auth()->id())}}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="">{{__('Name')}}</label>
+                                    <input class="form-control" type="text" name="name" value="{{auth()->user()->name}}">
+                                    <small class="text-danger">@error('name') {{$message}}@enderror</small>
+
+                                </div>
+                                <div class="col-6">
+                                    <label for="">{{__('Email')}}</label>
+                                    <input disabled class="form-control" type="text" value="{{auth()->user()->email}}">
+                                </div>
+                                <div class="col-6">
+                                    <label for="">{{__('Password')}}</label>
+                                    <input class="form-control" name="password" type="password" >
+                                    <small class="text-danger">@error('password') {{$message}}@enderror</small>
+
+                                </div>
+                                <div class="col-6">
+                                    <label for="">{{__('Confirm Password')}}</label>
+                                    <input class="form-control" name="password_confirmation" type="password">
+                                    <small class="text-danger">@error('password_confirmation') {{$message}}@enderror</small>
+
+                                </div>
+                                <div class="d-grid gap-2 mt-3">
+                                    <button  class="btn btn-danger" type="submit">{{__('Save')}}</button>
+                                </div>
+                            </div>
+
+                        </form>
+
                     </div>
+
                 </div>
 
             </div>

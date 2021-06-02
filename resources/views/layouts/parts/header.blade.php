@@ -110,11 +110,10 @@
                             </form>--}}
                             <div class="option-item">
                                 <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    پروفایل
+                                    {{auth()->user()->name}}
                                 </button>
                                 <ul style="text-align: right!important;right: 0!important;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li><a class="dropdown-item" href="{{route('ticket.create')}}">تیکت جدید</a></li>
-                                    <li><a class="dropdown-item" href="{{route('profile.tickets')}}">تیکت های من</a></li>
+                                    <li><a class="dropdown-item" href="{{route('profile')}}">پروفایل</a></li>
                                     <li><a class="dropdown-item"  href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"

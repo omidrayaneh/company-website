@@ -6,11 +6,13 @@ use App\Repositories\CompanyRepositoryInterface;
 use App\Repositories\ContactRepositoryInterface;
 use App\Repositories\Eloquent\CompanyRepository;
 use App\Repositories\Eloquent\ContactRepository;
+use App\Repositories\Eloquent\FileRepository;
 use App\Repositories\Eloquent\GalleryRepository;
 use App\Repositories\Eloquent\MenuRepository;
 use App\Repositories\Eloquent\MetaRepository;
 use App\Repositories\Eloquent\PostRepository;
 use App\Repositories\Eloquent\UserRepository;
+use App\Repositories\FileRepositoryInterface;
 use App\Repositories\GalleryRepositoryInterface;
 use App\Repositories\MenuRepositoryInterface;
 use App\Repositories\MetaRepositoryInterface;
@@ -45,5 +47,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(MetaRepositoryInterface::class,MetaRepository::class);
         $this->app->bind(CompanyRepositoryInterface::class,CompanyRepository::class);
         $this->app->bind(ContactRepositoryInterface::class,ContactRepository::class);
+        $this->app->bind(FileRepositoryInterface::class,FileRepository::class);
     }
 }
