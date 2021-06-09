@@ -9243,3 +9243,12 @@ right: 6px;
     float: left;
     padding-top: 6px;
 }
+
+.profile-link.active{
+    color: #0a53be !important;
+}
+
+/**************** color **************************/
+.red{
+    color: red !important;
+}

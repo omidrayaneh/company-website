@@ -28,6 +28,7 @@ class CommentsController extends Controller
             'ticket_id' => $request->input('ticket_id'),
             'user_id' => Auth::user()->id,
             'user_type' => Auth::user()->role,
+            'file_id' => $request->input('file_id'),
             'comment' => $request->input('comment'),
         ]);
 

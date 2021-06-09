@@ -178,7 +178,7 @@
     </div>
 </div>
 
-@if(!empty($company))
+
     <div class="sidebarModal modal right fade" id="sidebarModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -199,6 +199,7 @@
                                     class="ri-message-line"></i><span></span></a>
                         </div>
                     </div>
+                    @if(!empty($company))
                     <div class="sidebar-contact-info">
                         <h3><span> اطلاعات شرکت </span>{{$company->companyName}}</h3>
                         <ul class="info-list">
@@ -219,8 +220,9 @@
                         <li><a href="https://www.instagram.com/{{$company->instagram}}" target="_blank"><i
                                     class="ri-instagram-fill"></i></a></li>
                     </ul>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-@endif
+

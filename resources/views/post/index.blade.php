@@ -9,19 +9,19 @@
         <title> {{$post->title}} | {{__('App Name')}}</title>
 @endpush
 @section('content')
-<div class="page-banner-area">
-    <div class="container">
-        <div class="page-banner-content">
-            <h2>جزئیات مطالعه</h2>
-            <ul>
-                <li>
-                    <a href="{{route('home')}}">خانه</a>
-                </li>
-                <li>{{$post->menu->title}}</li>
-            </ul>
-        </div>
-    </div>
-</div>
+{{--<div class="page-banner-area">--}}
+{{--    <div class="container">--}}
+{{--        <div class="page-banner-content">--}}
+{{--            <h2>جزئیات مطالعه</h2>--}}
+{{--            <ul>--}}
+{{--                <li>--}}
+{{--                    <a href="{{route('home')}}">خانه</a>--}}
+{{--                </li>--}}
+{{--                <li>{{$post->menu->title}}</li>--}}
+{{--            </ul>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 <div class="case-details-area ptb-100">
     <div class="container">
         <div class="case-details-image">
@@ -36,16 +36,17 @@
             </div>
             <div class="col-lg-3 col-md-12">
                 <div class="case-details-information">
-                    <ul class="information-list">
-                        <li>
-                            <span>دسته بندی ها :</span> {{$post->menu->title}}
-                        </li>
-                        <li>
-                            <span>تاریخ انتشار :</span>
-                            <span>{{\Morilog\Jalali\CalendarUtils::strftime('Y/m/d', strtotime($post->created_at))}}</span>
+{{--                    <ul class="information-list">--}}
+{{--                        <li>--}}
+{{--                            <span>دسته بندی ها :</span> {{$post->menu->title}}--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <span>تاریخ انتشار :</span>--}}
+{{--                            <span>{{\Morilog\Jalali\CalendarUtils::strftime('Y/m/d', strtotime($post->created_at))}}</span>--}}
 
-                        </li>
-                    </ul>
+{{--                        </li>--}}
+{{--                    </ul>--}}
+                    @if(!empty($company))
                     <div class="case-contact-info">
                         <h3>بیایید با هم چیزی شگفت آور بسازیم!</h3>
                         <div class="info-box-one">
@@ -57,6 +58,7 @@
                             <a href="mailto:{{$company->email}}">{{$company->email}}</a>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

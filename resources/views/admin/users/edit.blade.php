@@ -21,20 +21,22 @@
                         @method('PATCH')
                         <div class="form-group">
                             <label>{{__('Name')}}</label>
-                            <input class="form-control" name="name" type="text" value="{{old('name',$user->name)}}" placeholder="{{__('Name')}}">
+                            <input class="form-control" name="name" type="text" value="{{old('name',$user->name)}}"
+                                   placeholder="{{__('Name')}}">
                             <small class="text-danger">@error('name') {{$message}}@enderror</small>
                         </div>
                         <div class="form-group">
                             <label>{{__('Email')}}</label>
-                            <input class="form-control" name="email" type="email" value="{{old('email',$user->email)}}" placeholder="{{__('Email')}}">
+                            <input class="form-control" name="email" type="email" value="{{old('email',$user->email)}}"
+                                   placeholder="{{__('Email')}}">
                             <small class="text-danger">@error('email') {{$message}}@enderror</small>
                         </div>
                         <div class="form-group">
-                            <label>{{__('Category')}} - <span class="red">{{__('Only For Admin')}}</span></label>
-                            <select name="category" class="form-control">
-                                <option value="" >{{__('Select')}}</option>
-                                @foreach($cat as $category)
-                                    <option @if($user->category_id ==$category->id) selected @endif value="{{$category->id}}">{{$category->name}}</option>
+                            <label>{{__('Category')}}</label>
+                            <select name="categories[]" multiple class="form-control">
+                                @foreach($categories as $category)
+                                    <option @if(in_array($category->id, $user->categories->pluck('id')->toArray())) selected @endif
+                                    value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
                             <small class="text-danger">@error('role') {{$message}}@enderror</small>
@@ -42,28 +44,34 @@
                         <div class="form-group">
                             <label>{{__('Role')}}</label>
                             <select name="role" class="form-control">
-                                <option value="" >{{__('Select')}}</option>
+                                <option value="">{{__('Select')}}</option>
                                 <option value="user" @if($user->role =='user') selected @endif>{{__('User')}}</option>
-                                <option value="admin" @if($user->role =='admin') selected @endif>{{__('Admin')}}</option>
-                                <option value="manager" @if($user->role =='manager') selected @endif>{{__('Manager')}}</option>
+                                <option value="admin"
+                                        @if($user->role =='admin') selected @endif>{{__('Admin')}}</option>
+                                <option value="manager"
+                                        @if($user->role =='manager') selected @endif>{{__('Manager')}}</option>
                             </select>
                             <small class="text-danger">@error('role') {{$message}}@enderror</small>
                         </div>
                         <div class="form-group">
                             <label>{{__('Action Status')}}</label>
                             <br>
-                            <input name="active" @if($user->active) checked @endif type="checkbox" data-on="فعال" data-off="غیرفعال" data-size="sm" data-toggle="toggle" data-onstyle="success" data-offstyle="danger">
+                            <input name="active" @if($user->active) checked @endif type="checkbox" data-on="فعال"
+                                   data-off="غیرفعال" data-size="sm" data-toggle="toggle" data-onstyle="success"
+                                   data-offstyle="danger">
                             <small class="text-danger">@error('active') {{$message}}@enderror</small>
                         </div>
                         <div class="form-group">
                             <label>{{__('Password')}}</label>
-                            <input class="form-control" name="password" type="password" value="{{old('password')}}" placeholder="{{__('Password')}}">
+                            <input class="form-control" name="password" type="password" value="{{old('password')}}"
+                                   placeholder="{{__('Password')}}">
                             <small class="text-danger">@error('password') {{$message}}@enderror</small>
 
                         </div>
                         <div class="form-group">
                             <label>{{__('Confirm Password')}}</label>
-                            <input class="form-control" name="password_confirmation" type="password" value="{{old('password_confirmation')}}" placeholder="{{__('Confirm Password')}}">
+                            <input class="form-control" name="password_confirmation" type="password"
+                                   value="{{old('password_confirmation')}}" placeholder="{{__('Confirm Password')}}">
                             {{--                            <small class="text-danger">@error('password_confirmation') {{$message}}@enderror</small>--}}
 
                         </div>

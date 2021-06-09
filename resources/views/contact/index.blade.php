@@ -4,20 +4,6 @@
 @endsection
 @push('css')
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
-{{--    <script>--}}
-
-{{--        // Enable pusher logging - don't include this in production--}}
-{{--        Pusher.logToConsole = false;--}}
-
-{{--        var pusher = new Pusher('f11fef07830cd0befafb', {--}}
-{{--            cluster: 'eu'--}}
-{{--        });--}}
-
-{{--        var channel = pusher.subscribe('contact-channel');--}}
-{{--        channel.bind('contact-event', function(data) {--}}
-{{--           //alert(JSON.stringify(data));--}}
-{{--        });--}}
-{{--    </script>--}}
 @endpush
 @section('content')
     <div class="page-banner-area" >
@@ -91,6 +77,7 @@
     <div class="contact-info-area pb-100">
         <div class="container">
             <div class="row">
+                @if(!empty($company))
                 <div class="col-lg-4 col-md-12">
                     <div class="contact-address">
                         <h3> شرکت:</h3>
@@ -143,6 +130,7 @@
                         <iframe src="{{$company->map}}" ></iframe>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

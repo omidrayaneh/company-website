@@ -7,19 +7,6 @@
     <link rel="stylesheet" href="{{asset('/admin/css/dropzone.css')}}">
 @endpush
 @section('content')
-    <div class="page-banner-area">
-        <div class="container">
-            <div class="page-banner-content">
-                <h2>حساب کاربری</h2>
-                <ul>
-                    <li>
-                        <a href="{{route('home')}}">خانه</a>
-                    </li>
-                    <li>{{__('File Upload')}}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="contact-area ptb-100">
         <div class="profile">
             <div class="row">

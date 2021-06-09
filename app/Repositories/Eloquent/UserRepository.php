@@ -16,18 +16,18 @@ class UserRepository implements UserRepositoryInterface
     }
     public function findById($id)
     {
-        return User::with('category')->findOrFail($id);
+        return User::with('categories')->findOrFail($id);
     }
 
     public function allWithPaginate($number)
     {
-        return User::with('category')->paginate($number);
+        return User::with('categories')->paginate($number);
     }
 
     public function store( $request)
     {
 
-        $inputs = $request->only(['name', 'email', 'password','role','active','category']);
+        $inputs = $request->only(['name', 'email', 'password','role','active','categories']);
 
         $user = new User();
         $user->name = $inputs['name'];
@@ -46,10 +46,9 @@ class UserRepository implements UserRepositoryInterface
         else
             $user->active = false;
 
-        if (!empty($inputs['category']))
-            $user->category_id = $inputs['category'];
-
         $user->save();
+        if (isset($inputs['categories']))
+        $user->categories()->sync($inputs['categories']);
 
         toast('کاربر با موفقیت اضافه شد','success');
 
@@ -58,7 +57,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function update($request, $id)
     {
-        $inputs = $request->only(['name', 'email', 'password','role','active','category']);
+        $inputs = $request->only(['name', 'email', 'password','role','active','categories']);
 
         $user = $this->findById($id);
         $user->name = $inputs['name'];
@@ -79,10 +78,10 @@ class UserRepository implements UserRepositoryInterface
         else
             $user->active = false;
 
-      //  if (!empty($inputs['category']))
-            $user->category_id = $inputs['category'];
 
         $user->save();
+        if (isset($inputs['categories']))
+        $user->categories()->sync($inputs['categories']);
 
         toast('کاربر با موفقیت بروز شد','success');
 

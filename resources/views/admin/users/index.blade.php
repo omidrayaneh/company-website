@@ -45,26 +45,38 @@
                                 <td>{{$user->email}}</td>
                                 <td>
                                     @if($user->role == __('user'))
-                                        <span class="badge badge-purple float-center">{{__('User')}}</span>
+                                        <span class="badge badge-info float-center">{{__('User')}}</span>
                                     @elseif($user->role == __('manager'))
                                         <span class="badge badge-purple float-center">{{__('Manager')}}</span>
                                     @elseif($user->role == __('admin'))
-                                        <span class="badge badge-purple float-center">{{__('Admin')}}</span>
+                                        <span class="badge badge-success float-center">{{__('Admin')}}</span>
                                     @endif
                                 </td>
-                                @if(!empty($user->category->name))
-                                <td>{{$user->category->name}}</td>
+                                @if(count($user->categories) != 0)
+                                    <td>
+                                        @foreach($user->categories as $category)
+                                            @if($user->role == 'admin' )
+                                                <span class="badge badge-success float-center">{{$category->name}}</span>
+                                            @elseif($user->role == 'manager' )
+                                                <span class="badge badge-purple float-center">{{$category->name}}</span>
+                                            @else
+                                                <span class="badge badge-info float-center">{{$category->name}}</span>
+                                            @endif
+                                        @endforeach
+                                    </td>
                                 @else
-                                    <td>---</td>
+                                    <td><span
+                                            class="badge badge-danger float-center">{{__('Group Not Assigned')}}</span>
+                                    </td>
                                 @endif
                                 <td>
-                                @if($user->active)
+                                    @if($user->active)
                                         <span class="badge badge-success float-center">{{__('Accepted')}}</span>
                                     @else
                                         <span class="badge badge-danger float-center">{{__('Not Approved')}}</span>
                                     @endif
                                 </td>
-                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($user->created_at)}}</td>
+                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($user->created_at)->format('H:m:s : Y/m/d')}}</td>
 
                                 <td>
                                     <a href="{{route('files.show',$user->id)}}" data-toggle="tooltip"

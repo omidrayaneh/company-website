@@ -27,8 +27,8 @@
                         <thead>
                         <tr class="text-center">
                             <th>{{__('Row')}}</th>
-                            <th>{{__('Files')}}</th>
-                            <th>{{__('Download Link')}}</th>
+                            <th>{{__('File Name')}}</th>
+                            <th>{{__('Download File')}}</th>
                             <th>{{__('Created At')}}</th>
                             <th>{{__('Action')}}</th>
                         </tr>
@@ -40,7 +40,7 @@
 
                                 <td>{{$file->original_name}}</td>
                                 <td><a href="{{asset($file->path)}}">{{__('Download')}}</a></td>
-                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($file->created_at)}}</td>
+                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($file->created_at)->format('H:m:s : Y/m/d')}}</td>
 
                                 <td>
                                     <a href="#" data-id="{{ $file->id }}" class="deleteRecord" data-toggle="tooltip"

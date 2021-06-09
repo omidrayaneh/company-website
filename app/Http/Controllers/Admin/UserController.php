@@ -7,6 +7,7 @@ use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\UserRequest;
 use App\Repositories\Eloquent\CategoryRepository;
 use App\Repositories\Eloquent\UserRepository;
+use App\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -34,8 +35,8 @@ class UserController extends Controller
 
     public function create()
     {
-        $cat = $this->category->allActive();
-        return view('admin.users.create',compact(['cat']));
+        $categories = $this->category->allActive();
+        return view('admin.users.create',compact(['categories']));
     }
 
 
@@ -54,8 +55,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = $this->user->findById($id);
-        $cat = $this->category->allActive();
-        return view('admin.users.edit',compact(['user','cat']));
+        $categories = $this->category->allActive();
+        return view('admin.users.edit',compact(['user','categories']));
     }
 
 

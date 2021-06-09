@@ -29,10 +29,9 @@
                             <small class="text-danger">@error('email') {{$message}}@enderror</small>
                         </div>
                         <div class="form-group">
-                            <label>{{__('Category')}} - <span class="red">{{__('Only For Admin')}}</span></label>
-                            <select name="category" class="form-control">
-                                <option value="" >{{__('Select')}}</option>
-                                @foreach($cat as $category)
+                            <label>{{__('Category')}}</label>
+                            <select name="categories[]" multiple class="form-control">
+                                @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
@@ -41,7 +40,6 @@
                         <div class="form-group">
                             <label>{{__('Role')}}</label>
                             <select name="role" class="form-control">
-                                <option value="" >{{__('Select')}}</option>
                                 <option value="user">{{__('User')}}</option>
                                 <option value="admin">{{__('Admin')}}</option>
                                 <option value="manager">{{__('Manager')}}</option>

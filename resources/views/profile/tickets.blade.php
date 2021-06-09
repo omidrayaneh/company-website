@@ -3,19 +3,6 @@
     <title>{{__('App Name')}} - {{__('Ticketing')}}</title>
 @endpush
 @section('content')
-    <div class="page-banner-area">
-        <div class="container">
-            <div class="page-banner-content">
-                <h2>حساب کاربری</h2>
-                <ul>
-                    <li>
-                        <a href="{{route('home')}}">خانه</a>
-                    </li>
-                    <li>تیکت های من</li>
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="contact-area ptb-100">
         <div class="profile">
             <div class="row">
@@ -30,7 +17,7 @@
                                     <thead>
                                     <tr>
                                         <th>{{__('category')}}</th>
-                                        <th>{{__('Title')}}</th>
+                                        <th>شناسه تیکت</th>
                                         <th>{{__('Status')}}</th>
                                         <th>{{__('Updated_At')}}</th>
                                     </tr>
@@ -47,7 +34,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ url('profile/tickets/'. $ticket->ticket_id) }}">
-                                                    #{{ $ticket->ticket_id }} - {{ $ticket->title }}
+                                                    #{{ $ticket->ticket_id }}
                                                 </a>
                                             </td>
                                             <td>

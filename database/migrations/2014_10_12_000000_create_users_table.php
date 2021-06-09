@@ -21,10 +21,6 @@ class CreateUsersTable extends Migration
             $table->enum('role',['user','manager','admin'])->default('user')->comment('user, admin, manager is a user role type');
             $table->string('password');
             $table->boolean('active')->default(0);
-
-            $table->unsignedBigInteger('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories');
-
             $table->rememberToken();
             $table->timestamps();
         });

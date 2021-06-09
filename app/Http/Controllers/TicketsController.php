@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Events\TicketEvent;
+use App\File;
+use App\Http\Controllers\Admin\FileController;
+use App\Repositories\Eloquent\UploadFileRepository;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Ticket;
@@ -13,9 +17,16 @@ use Illuminate\Support\Str;
 
 class TicketsController extends Controller
 {
-    public function __construct()
+
+    /**
+     * @var UploadFileRepository
+     */
+    private $uploadFile;
+
+    public function __construct(UploadFileRepository $uploadFile)
     {
         $this->middleware('auth');
+        $this->uploadFile = $uploadFile;
     }
 
     public function index()
@@ -44,17 +55,20 @@ class TicketsController extends Controller
 
     public function store(Request $request, AppMailer $mailer)
     {
+
         $this->validate($request, [
             'title' => 'required',
             'category' => 'required',
             'priority' => 'required',
             'message' => 'required'
         ]);
+
         $ticket = new Ticket([
             'title' => $request->input('title'),
             'user_id' => Auth::user()->id,
             'ticket_id' => strtoupper(Str::random(10)),
             'category_id' => $request->input('category'),
+            'file_id' => $request->input('file_id'),
             'priority' => $request->input('priority'),
             'message' => $request->input('message'),
             'status' => 1,
@@ -70,13 +84,8 @@ class TicketsController extends Controller
 
     public function show($ticket_id)
     {
-        $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
-
-        $comments = $ticket->comments;
-
-        $category = $ticket->category;
-
-        return view('profile.show', compact('ticket', 'category', 'comments'));
+        $ticket = Ticket::with('user','comments','category','file','comments.file')->where('ticket_id', $ticket_id)->first();
+        return view('profile.show', compact('ticket'));
     }
 
     public function close($ticket_id, AppMailer $mailer)

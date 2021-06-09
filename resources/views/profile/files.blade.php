@@ -4,19 +4,6 @@
     <title>{{__('App Name')}} - {{__('Files Upload')}}</title>
 @endpush
 @section('content')
-    <div class="page-banner-area">
-        <div class="container">
-            <div class="page-banner-content">
-                <h2>حساب کاربری</h2>
-                <ul>
-                    <li>
-                        <a href="{{route('home')}}">خانه</a>
-                    </li>
-                    <li>{{__('Files Upload')}}</li>
-                </ul>
-            </div>
-        </div>
-    </div>
     <div class="contact-area ptb-100">
         <div class="profile">
             <div class="row">
@@ -33,7 +20,7 @@
                                     <tr>
                                         <th>{{__('Row')}}</th>
                                         <th>{{__('File Name')}}</th>
-                                        <th>{{__('Path')}}</th>
+                                        <th>{{__('Download File')}}</th>
                                         <th>{{__('Created_At')}}</th>
                                     </tr>
                                     </thead>
@@ -42,7 +29,7 @@
                                         <tr>
                                             <td>{{$files->currentPage() == 1 ? $key+1: (($files->perPage()*($files->currentPage()-1)))+$key+1}}</td>
                                             <td>{{$file->original_name}}</td>
-                                            <td><a href="{{asset($file->path)}}">{{__('Download')}}</a></td>
+                                            <td><a class="red" href="{{asset($file->path)}}">{{__('Download')}}</a></td>
                                             <td>{{ Morilog\Jalali\Jalalian::fromDateTime($file->created_at)}}</td>
                                         </tr>
                                     @endforeach
