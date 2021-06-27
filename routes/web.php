@@ -38,6 +38,8 @@ Route::group(['middleware' => ['admin']], function () {
         Route::resource('metas','Admin\MetaController');
         Route::resource('categories','Admin\CategoryController');
         Route::resource('files','Admin\FileController');
+        Route::resource('machines','Admin\MachineController');
+        Route::resource('industries','Admin\IndustryController');
 
         Route::get('dashboard','Admin\AdminController@index')->name('admin.dashboard');
         Route::get('photos','Admin\PhotoController@index')->name('photos.index');
@@ -61,6 +63,9 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('tickets', 'Admin\TicketsController@index')->name('tickets.index');
         Route::get('tickets/edit/{id}', 'Admin\TicketsController@edit')->name('ticket.edit');
         Route::post('tickets/update', 'Admin\TicketsController@update')->name('ticket.update');
+
+        Route::get('orders/{id}', 'Admin\OrderController@show')->name('order.show');
+        Route::get('orders', 'Admin\OrderController@index')->name('orders');
 
     });
 });
@@ -96,6 +101,11 @@ Route::group(['middleware'=>'auth'], function() {
 
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/order', 'HomeController@order')->name('order');
+Route::get('/colleague', 'HomeController@colleague')->name('colleague');
+Route::get('/customer', 'HomeController@customer')->name('customer');
+Route::post('/order', 'OrderController@store')->name('Order');
+Route::post('/Order_customer', 'OrderController@store_customer')->name('Order_customer');
 Route::get('post/{id}','HomeController@post')->name('post');
 
 

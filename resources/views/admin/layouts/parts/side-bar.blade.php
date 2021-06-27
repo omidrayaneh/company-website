@@ -40,6 +40,12 @@
                         <span>{{__('Tickets')}}</span>
                     </a>
                 </li>
+                <li class="{{Route::is('orders')? 'active':'' }}">
+                    <a href="{{route('orders')}}" title="{{__('Orders')}}">
+                        <em class="fa fa-ticket-alt indigo"></em>
+                        <span>{{__('Orders')}}</span>
+                    </a>
+                </li>
                 <li class="{{Route::is('contacts.index')? 'active':'' }}">
                     <a href="{{route('contacts.index')}}" title="{{__('Contacts')}}">
                         <em class="fa fa-envelope tomato"></em>
@@ -90,6 +96,48 @@
                             <a href="{{route('companies.create')}}" title="Horizontal">
                                 <em class="fa fa-plus limegreen"></em>
                                 <span>{{__('New Company')}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{{Route::is('machines.index')? 'active':'' }}">
+                    <a href="#machines" title="Layouts" data-toggle="collapse">
+                        <em class="fa fa-car limegreen"></em>
+                        <span>{{__('Machines')}}</span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('machines.index')? 'show ':'' }}" id="machines">
+                        <li class="sidebar-subnav-header">{{__('Machines')}}</li>
+                        <li class=" {{Route::is('machines.index')? 'active ':'' }}">
+                            <a href="{{route('machines.index')}}" title="Horizontal">
+                                <em class="fa fa-list-alt limegreen"></em>
+                                <span>{{__('Machine List')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('machines.create')? 'active ':'' }}">
+                            <a href="{{route('machines.create')}}" title="Horizontal">
+                                <em class="fa fa-plus limegreen"></em>
+                                <span>{{__('Create Machine')}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="{{Route::is('industries.index')? 'active':'' }}">
+                    <a href="#industries" title="Layouts" data-toggle="collapse">
+                        <em class="fa fa-car limegreen"></em>
+                        <span>{{__('Industry')}}</span>
+                    </a>
+                    <ul class="sidebar-nav sidebar-subnav collapse {{Route::is('industries.index')? 'show ':'' }}" id="industries">
+                        <li class="sidebar-subnav-header">{{__('Industries')}}</li>
+                        <li class=" {{Route::is('industries.index')? 'active ':'' }}">
+                            <a href="{{route('industries.index')}}" title="Horizontal">
+                                <em class="fa fa-list-alt limegreen"></em>
+                                <span>{{__('Industry List')}}</span>
+                            </a>
+                        </li>
+                        <li class=" {{Route::is('industries.create')? 'active ':'' }}">
+                            <a href="{{route('industries.create')}}" title="Horizontal">
+                                <em class="fa fa-plus limegreen"></em>
+                                <span>{{__('Create Industry')}}</span>
                             </a>
                         </li>
                     </ul>

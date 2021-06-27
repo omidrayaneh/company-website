@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    <title>{{__('Contact')}}</title>
+    <title>{{__('Orders')}}</title>
 @endsection
 @section('content')
     <section class="section-container">
@@ -8,17 +8,14 @@
         <div class="content-wrapper">
             <div class="content-heading">
                 <div>
-                    {{__('Contact List')}}
+                    {{__('Orders List')}}
                     <small data-localize="dashboard.WELCOME"></small>
                 </div>
             </div>
             <!-- START cards box-->
             <div class="card card-default">
                 <div class="d-flex justify-content-between ">
-                    <div class="card-header ">{{__('Contact Table List')}}</div>
-                    <div class="float-right">
-
-                    </div>
+                    <div class="card-header ">{{__('Order Table List')}}</div>
                 </div>
 
                 <!-- START table-responsive-->
@@ -27,47 +24,54 @@
                         <thead>
                         <tr class="text-center">
                             <th>{{__('Row')}}</th>
-                            <th>{{__('Name')}}</th>
-                            <th>{{__('phone')}}</th>
-                            <th>{{__('Email')}}</th>
-                            <th>{{__('Status')}}</th>
-                            <th>{{__('Created At')}}</th>
+                            <th>نوع مشتری</th>
+                            <th>نام</th>
+                            <th>نام شرکت</th>
+                            <th>موبایل شرکت</th>
+                            <th>تلفن شرکت</th>
+                            <th>ایمیل شرکت</th>
+                            <th>نوع دستگاه سفارشی</th>
+                            <th>نوع صنعت شرکت</th>
+                            <th>وضعیت سفارش</th>
+                            <th>تاریخ سفارش</th>
                             <th>{{__('Action')}}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($contacts as $key =>$contact )
+                        @foreach($orders as $key =>$order )
                             <tr class="text-center">
-                                <td>{{$contacts->currentPage() == 1 ? $key+1: (($contacts->perPage()*($contacts->currentPage()-1)))+$key+1}}</td>
-
-                                <td>{{$contact->name}}</td>
-                                <td>{{$contact->phone}}</td>
-                                <td>{{$contact->email}}</td>
-                                <td>
-                                @if($contact->status)
-                                        <span class="badge badge-success float-center">{{__('Read')}}</span>
+                                <td>{{$orders->currentPage() == 1 ? $key+1: (($orders->perPage()*($orders->currentPage()-1)))+$key+1}}</td>
+                                @if($order->role == 'customer')
+                                    <td>   <span class="badge badge-success float-center">{{__('Customer')}}</span></td>
                                 @else
-                                        <span class="badge badge-danger float-center">{{__('Not Read')}}</span>
+                                    <td>   <span class="badge badge-purple float-center">{{__('Colleague')}}</span></td>
                                 @endif
-                                </td>
-                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($contact->created_at)->format('H:m:s Y/m/d')}}</td>
+                                <td>{{$order->name}}</td>
+                                <td>{{$order->company}}</td>
+                                <td>{{$order->mobile}}</td>
+                                <td>{{$order->phone}}</td>
+                                <td>{{$order->company}}</td>
+                                @if($order->role == 'customer')
+                                    <td>{{$order->machine->title}}</td>
+                                @else
+                                    <td>---</td>
+                                @endif
+                                @if($order->role == 'customer')
+                                    <td>{{$order->industry->title}}
+                                @else
+                                    <td>---</td>
+                                @endif
+                                @if($order->status)
+                                    <td><span class="badge badge-success float-center">{{__('Show')}}</span></td>
+                                @else
+                                    <td>   <span class="badge badge-danger float-center">{{__('Not Show')}}</span></td>
+                                @endif
+                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($order->created_at)->format('H:m:s Y/m/d')}}</td>
                                 <td>
-                                    <a href="{{route('contacts.edit',$contact->id)}}" data-toggle="tooltip"
-                                       data-title="{{__('Show')}}">
+                                    <a href="{{route('order.show',$order->id)}}" data-toggle="tooltip"
+                                       data-title="نمایش">
                                         <span class="fa fa-edit blue"></span>
-
                                     </a>
-                                    |
-                                    <a href="#" data-id="{{ $contact->id }}" class="deleteRecord" data-toggle="tooltip"
-                                       data-title="{{__('Delete')}}">
-                                        <span class="fa fa-trash red"></span>
-                                    </a>
-                                    <input type="hidden" id="user_id" value="{{$contact->id}}">
-                                    <form action="{{ route('contacts.destroy',  $contact->id) }}"
-                                          method="post">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -76,7 +80,7 @@
 
                     <br>
                     <div class="d-flex justify-content-center">
-                        {{$contacts->links()}}
+                        {{$orders->links()}}
                     </div>
                 </div>
                 <!-- END table-responsive-->
@@ -124,7 +128,7 @@
                     var token = $("meta[name='csrf-token']").attr("content");
 
                     $.ajax({
-                        url: "/admin/contacts/" + id,
+                        url: "/admin/metas/" + id,
                         type: "DELETE",
                         data: {
                             "id": id,
@@ -132,9 +136,9 @@
                         },
                         success: function (res) {
                             setTimeout(function () {
-                                window.location.replace('/admin/contacts');
+                                window.location.replace('/admin/metas');
                             }, 500);
-                            Toast.fire({icon: 'success', title: 'پیغام حذف شد'})
+                            Toast.fire({icon: 'success', title: 'متا حذف شد'})
                         }
                     })
                 } else {
@@ -148,3 +152,4 @@
 
     </script>
 @endpush
+

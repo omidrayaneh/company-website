@@ -3,7 +3,7 @@
     <nav class="navbar topnavbar">
         <!-- START navbar header-->
         <div class="navbar-header">
-            <a class="navbar-brand" href="#/">
+            <a class="navbar-brand" href="/admin/dashboard">
                 <div class="brand-logo">
                     <img class="img-fluid" src="/admin/img/logo.png" alt="App Logo">
                 </div>
@@ -57,6 +57,7 @@
                 </a>
             </li>
             <!-- START Alert menu-->
+            <order :userid="{{auth()->id()}}" :unreads="{{$unread_orders}}" ></order>
             <contact-us :userid="{{auth()->id()}}" :unreads="{{$unread_contacts}}"></contact-us>
             <ticket :userid="{{auth()->id()}}" :unreads="{{$unread_tickets}}"></ticket>
             <comment :userid="{{auth()->id()}}" :unreads="{{$unread_comments}}" ></comment>

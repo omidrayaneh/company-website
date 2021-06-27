@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    <title>{{__('Contact')}}</title>
+    <title>{{__('Industry')}}</title>
 @endsection
 @section('content')
     <section class="section-container">
@@ -8,16 +8,18 @@
         <div class="content-wrapper">
             <div class="content-heading">
                 <div>
-                    {{__('Contact List')}}
+                    {{__('Industry List')}}
                     <small data-localize="dashboard.WELCOME"></small>
                 </div>
             </div>
             <!-- START cards box-->
             <div class="card card-default">
                 <div class="d-flex justify-content-between ">
-                    <div class="card-header ">{{__('Contact Table List')}}</div>
+                    <div class="card-header ">{{__('Industry Table List')}}</div>
                     <div class="float-right">
-
+                        <a class="btn btn-secondary" href="{{route('industries.create')}}">
+                            <i class="fa fa-plus limegreen"></i> جدید
+                        </a>
                     </div>
                 </div>
 
@@ -27,43 +29,39 @@
                         <thead>
                         <tr class="text-center">
                             <th>{{__('Row')}}</th>
-                            <th>{{__('Name')}}</th>
-                            <th>{{__('phone')}}</th>
-                            <th>{{__('Email')}}</th>
+                            <th>{{__('Title')}}</th>
                             <th>{{__('Status')}}</th>
                             <th>{{__('Created At')}}</th>
                             <th>{{__('Action')}}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($contacts as $key =>$contact )
+                        @foreach($industries as $key =>$industry )
                             <tr class="text-center">
-                                <td>{{$contacts->currentPage() == 1 ? $key+1: (($contacts->perPage()*($contacts->currentPage()-1)))+$key+1}}</td>
+                                <td>{{$industries->currentPage() == 1 ? $key+1: (($industries->perPage()*($industries->currentPage()-1)))+$key+1}}</td>
 
-                                <td>{{$contact->name}}</td>
-                                <td>{{$contact->phone}}</td>
-                                <td>{{$contact->email}}</td>
+                                <td>{{$industry->title}}</td>
                                 <td>
-                                @if($contact->status)
-                                        <span class="badge badge-success float-center">{{__('Read')}}</span>
-                                @else
-                                        <span class="badge badge-danger float-center">{{__('Not Read')}}</span>
-                                @endif
+                                @if($industry->status)
+                                        <span class="badge badge-success float-center">{{__('Enable')}}</span>
+                                    @else
+                                        <span class="badge badge-danger float-center">{{__('Disable')}}</span>
+                                    @endif
                                 </td>
-                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($contact->created_at)->format('H:m:s Y/m/d')}}</td>
+                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($industry->created_at)->format('H:m:s Y/m/d')}}</td>
                                 <td>
-                                    <a href="{{route('contacts.edit',$contact->id)}}" data-toggle="tooltip"
-                                       data-title="{{__('Show')}}">
+                                    <a href="{{route('industries.edit',$industry->id)}}" data-toggle="tooltip"
+                                       data-title="{{__('Edit')}}">
                                         <span class="fa fa-edit blue"></span>
 
                                     </a>
                                     |
-                                    <a href="#" data-id="{{ $contact->id }}" class="deleteRecord" data-toggle="tooltip"
+                                    <a href="#" data-id="{{ $industry->id }}" class="deleteRecord" data-toggle="tooltip"
                                        data-title="{{__('Delete')}}">
                                         <span class="fa fa-trash red"></span>
                                     </a>
-                                    <input type="hidden" id="user_id" value="{{$contact->id}}">
-                                    <form action="{{ route('contacts.destroy',  $contact->id) }}"
+                                    <input type="hidden" id="machine_id" value="{{$industry->id}}">
+                                    <form action="{{ route('industries.destroy',  $industry->id) }}" id="delete-form"
                                           method="post">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
@@ -76,7 +74,7 @@
 
                     <br>
                     <div class="d-flex justify-content-center">
-                        {{$contacts->links()}}
+                        {{$industries->links()}}
                     </div>
                 </div>
                 <!-- END table-responsive-->
@@ -124,7 +122,7 @@
                     var token = $("meta[name='csrf-token']").attr("content");
 
                     $.ajax({
-                        url: "/admin/contacts/" + id,
+                        url: "/admin/industries/" + id,
                         type: "DELETE",
                         data: {
                             "id": id,
@@ -132,9 +130,9 @@
                         },
                         success: function (res) {
                             setTimeout(function () {
-                                window.location.replace('/admin/contacts');
+                                window.location.replace('/admin/industries');
                             }, 500);
-                            Toast.fire({icon: 'success', title: 'پیغام حذف شد'})
+                            Toast.fire({icon: 'success', title: 'صنعت حذف شد'})
                         }
                     })
                 } else {
@@ -148,3 +146,4 @@
 
     </script>
 @endpush
+

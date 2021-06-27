@@ -56,6 +56,14 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('unread_comments',$unread_comments);
         });
         View::composer('admin.*',function ($view){
+            $unread_orders =collect();
+            foreach (auth()->user()->unreadNotifications as $notification) {
+                if ($notification->type == 'App\Notifications\OrderAlert')
+                    $unread_orders->push($notification);
+            }
+            $view->with('unread_orders',$unread_orders);
+        });
+        View::composer('admin.*',function ($view){
             $unread_contacts =collect();
             foreach (auth()->user()->unreadNotifications as $notification) {
                 if ($notification->type == 'App\Notifications\ContactAlert')

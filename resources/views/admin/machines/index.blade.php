@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 @section('title')
-    <title>{{__('Contact')}}</title>
+    <title>{{__('Machine')}}</title>
 @endsection
 @section('content')
     <section class="section-container">
@@ -8,16 +8,18 @@
         <div class="content-wrapper">
             <div class="content-heading">
                 <div>
-                    {{__('Contact List')}}
+                    {{__('Machine List')}}
                     <small data-localize="dashboard.WELCOME"></small>
                 </div>
             </div>
             <!-- START cards box-->
             <div class="card card-default">
                 <div class="d-flex justify-content-between ">
-                    <div class="card-header ">{{__('Contact Table List')}}</div>
+                    <div class="card-header ">{{__('Machine Table List')}}</div>
                     <div class="float-right">
-
+                        <a class="btn btn-secondary" href="{{route('machines.create')}}">
+                            <i class="fa fa-plus limegreen"></i> جدید
+                        </a>
                     </div>
                 </div>
 
@@ -27,43 +29,39 @@
                         <thead>
                         <tr class="text-center">
                             <th>{{__('Row')}}</th>
-                            <th>{{__('Name')}}</th>
-                            <th>{{__('phone')}}</th>
-                            <th>{{__('Email')}}</th>
+                            <th>{{__('Title')}}</th>
                             <th>{{__('Status')}}</th>
                             <th>{{__('Created At')}}</th>
                             <th>{{__('Action')}}</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($contacts as $key =>$contact )
+                        @foreach($machines as $key =>$machine )
                             <tr class="text-center">
-                                <td>{{$contacts->currentPage() == 1 ? $key+1: (($contacts->perPage()*($contacts->currentPage()-1)))+$key+1}}</td>
+                                <td>{{$machines->currentPage() == 1 ? $key+1: (($machines->perPage()*($machines->currentPage()-1)))+$key+1}}</td>
 
-                                <td>{{$contact->name}}</td>
-                                <td>{{$contact->phone}}</td>
-                                <td>{{$contact->email}}</td>
+                                <td>{{$machine->title}}</td>
                                 <td>
-                                @if($contact->status)
-                                        <span class="badge badge-success float-center">{{__('Read')}}</span>
-                                @else
-                                        <span class="badge badge-danger float-center">{{__('Not Read')}}</span>
-                                @endif
+                                @if($machine->status)
+                                        <span class="badge badge-success float-center">{{__('Enable')}}</span>
+                                    @else
+                                        <span class="badge badge-danger float-center">{{__('Disable')}}</span>
+                                    @endif
                                 </td>
-                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($contact->created_at)->format('H:m:s Y/m/d')}}</td>
+                                <td>{{Morilog\Jalali\Jalalian::fromDateTime($machine->created_at)->format('H:m:s Y/m/d')}}</td>
                                 <td>
-                                    <a href="{{route('contacts.edit',$contact->id)}}" data-toggle="tooltip"
-                                       data-title="{{__('Show')}}">
+                                    <a href="{{route('machines.edit',$machine->id)}}" data-toggle="tooltip"
+                                       data-title="{{__('Edit')}}">
                                         <span class="fa fa-edit blue"></span>
 
                                     </a>
                                     |
-                                    <a href="#" data-id="{{ $contact->id }}" class="deleteRecord" data-toggle="tooltip"
+                                    <a href="#" data-id="{{ $machine->id }}" class="deleteRecord" data-toggle="tooltip"
                                        data-title="{{__('Delete')}}">
                                         <span class="fa fa-trash red"></span>
                                     </a>
-                                    <input type="hidden" id="user_id" value="{{$contact->id}}">
-                                    <form action="{{ route('contacts.destroy',  $contact->id) }}"
+                                    <input type="hidden" id="machine_id" value="{{$machine->id}}">
+                                    <form action="{{ route('machines.destroy',  $machine->id) }}" id="delete-form"
                                           method="post">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
@@ -76,7 +74,7 @@
 
                     <br>
                     <div class="d-flex justify-content-center">
-                        {{$contacts->links()}}
+                        {{$machines->links()}}
                     </div>
                 </div>
                 <!-- END table-responsive-->
@@ -124,7 +122,7 @@
                     var token = $("meta[name='csrf-token']").attr("content");
 
                     $.ajax({
-                        url: "/admin/contacts/" + id,
+                        url: "/admin/machines/" + id,
                         type: "DELETE",
                         data: {
                             "id": id,
@@ -132,9 +130,9 @@
                         },
                         success: function (res) {
                             setTimeout(function () {
-                                window.location.replace('/admin/contacts');
+                                window.location.replace('/admin/machines');
                             }, 500);
-                            Toast.fire({icon: 'success', title: 'پیغام حذف شد'})
+                            Toast.fire({icon: 'success', title: 'دستگاه حذف شد'})
                         }
                     })
                 } else {
@@ -148,3 +146,4 @@
 
     </script>
 @endpush
+

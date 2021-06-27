@@ -170,5 +170,8 @@ return [
         "category"              => 'گروه',
         "priority"              => 'درجه اهمیت',
         "message"              => 'متن پیام',
+        "company"              => 'شرکت',
+        "machine"              => 'نوع دستگاه',
+        "industry"              => 'نوع صنعت',
     ],
 ];

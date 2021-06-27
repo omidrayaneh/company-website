@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Events\CommentEvent;
 use App\Events\ContactEvent;
+use App\Events\OrderEvent;
 use App\Events\TicketEvent;
 use App\Listeners\CommentEventListener;
 use App\Listeners\ContactEventListener;
+use App\Listeners\OrderEventListener;
 use App\Listeners\TicketEventListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -31,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         CommentEvent::class => [
             CommentEventListener::class,
+        ],
+        OrderEvent::class => [
+            OrderEventListener::class,
         ],
     ];
 

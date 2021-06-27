@@ -23,6 +23,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('contact-us', require('./components/Contact.vue').default);
 Vue.component('ticket', require('./components/Ticket.vue').default);
 Vue.component('comment', require('./components/Comment.vue').default);
+Vue.component('order', require('./components/Order.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

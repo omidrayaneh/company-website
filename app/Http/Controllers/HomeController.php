@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\File;
 use App\Http\Requests\UpdateUserRequest;
+use App\Industry;
+use App\Machine;
 use App\Repositories\Eloquent\GalleryRepository;
 use App\Repositories\Eloquent\MenuRepository;
 use App\Repositories\Eloquent\MetaRepository;
@@ -106,4 +108,20 @@ class HomeController extends Controller
         $files = File::paginate(10);
         return view('profile.files',compact(['files']));
     }
+
+    public function order()
+    {
+        return view('orders.index');
+    }
+    public function colleague()
+    {
+        return view('orders.colleague');
+    }
+    public function customer()
+    {
+        $machines =Machine::where('status',1)->get();
+        $industries =Industry::where('status',1)->get();
+        return view('orders.customer',compact(['machines','industries']));
+    }
+
 }

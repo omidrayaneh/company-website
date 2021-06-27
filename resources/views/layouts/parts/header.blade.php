@@ -67,14 +67,14 @@
                                 </li>
                             @endforeach
                         @endif
-                        {{--                        <li class="nav-item">--}}
-                        {{--                            <a href="#" class="nav-link">--}}
-                        {{--                                {{__('About')}}--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
                         <li class="nav-item">
                             <a href="{{route('contact.index')}}"
                                class="nav-link {{Route::is('contact.index')? 'active':'' }}">{{__('Contact Us')}}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a  href="{{route('order')}}" class="red nav-link {{Route::is('order')? 'active':'' }}">
+                                {{__('Order')}}
+                            </a>
                         </li>
                     </ul>
                     <div class="others-options d-flex align-items-center">
