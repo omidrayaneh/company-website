@@ -26,7 +26,7 @@ class OrderController extends Controller
         $order->save();
         event(new OrderEvent($order));
 
-        alert()->autoclose(2500)->success('درخواست شما ثبت شد','موفق');
+        alert()->persistent('باشه')->success('موفق','با تشکر از انتخاب شما ،کارشناسان فروش ما در اسرع وقت با شما تماس خواهند گرفت. ');
         return redirect('/');
     }
     public function store_customer(OrderCustomerRequest $request)
@@ -47,7 +47,8 @@ class OrderController extends Controller
         $order->save();
         event(new OrderEvent($order));
 
-        alert()->autoclose(2500)->success('درخواست شما ثبت شد','موفق');
+        alert()->persistent('باشه')->success('موفق','با تشکر از انتخاب شما ،کارشناسان فروش ما در اسرع وقت با شما تماس خواهند گرفت. ');
+
         return redirect('/');
     }
 }

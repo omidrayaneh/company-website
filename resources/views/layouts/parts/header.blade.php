@@ -14,8 +14,8 @@
     </div>
     <div class="main-navbar">
         <div class="container">
-            <nav class="navbar navbar-expand-md navbar-light">
-                <a class="navbar-brand" href="/">
+            <nav  class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand " style="width: 145px" href="/">
 
                     @if(!empty($logo))
                         <img src="{{$logo->path}}" alt="logo">

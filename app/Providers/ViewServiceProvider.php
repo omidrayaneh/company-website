@@ -33,7 +33,7 @@ class ViewServiceProvider extends ServiceProvider
         View::composer('layouts.parts.*',function($view){
             $logo= Photo::where([['status',1],['place' , __('logo')]] )->first();
             $menus=  Menu::with(['childrenRecursive','posts'])
-                ->where('parent_id', null)
+                ->where([['parent_id', null],['status',1]])
                 ->get();
             $view->with('logo',$logo);
             $view->with('menus',$menus);

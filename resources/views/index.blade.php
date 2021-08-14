@@ -42,7 +42,7 @@
                         <div class="main-banner-image-wrap wow fadeInUp" data-wow-delay="00ms"
                              data-wow-duration="1000ms" data-speed="0.06" data-revert="true">
                             @if($mainBanner)
-                                <img src="{{$mainBanner->path}}" alt="image">
+                                <img style="border-radius: 15px;" src="{{$mainBanner->path}}" alt="image">
                             @endif
                         </div>
                     </div>
