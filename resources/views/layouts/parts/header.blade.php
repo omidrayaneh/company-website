@@ -34,9 +34,9 @@
                                     <a href="@if($menu->end) {{route('post',$menu->slug)}} @endif"
                                        class="nav-link {{Route::is('')? 'active':'' }}">
                                         {{$menu->title}}
-                                        @if(count($menu->childrenRecursive)>0)
-                                            <i class="ri-add-line"></i>
-                                        @endif
+{{--                                        @if(count($menu->childrenRecursive)>0)--}}
+{{--                                            <i class="ri-add-line"></i>--}}
+{{--                                        @endif--}}
                                     </a>
                                     @if(count($menu->childrenRecursive)>0)
                                         <ul class="dropdown-menu">

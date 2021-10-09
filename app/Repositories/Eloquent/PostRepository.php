@@ -23,7 +23,7 @@ class PostRepository implements PostRepositoryInterface
     }
     public function findBySlugWithRelation($slug)
     {
-        return Post::with('menu','photo')->where([['slug',$slug],['status',1]])->first();
+        return Post::with('menu','photo')->where('slug',$slug)->first();
     }
     public function findByMenu($id)
     {
